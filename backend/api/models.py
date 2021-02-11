@@ -3,7 +3,7 @@ import string
 import random
 
 def generate_unique_product_code():
-  length= 6
+  length= 7
 
   while True:
     code = ''.join(random.choices(string.ascii_uppercase, k=length))
