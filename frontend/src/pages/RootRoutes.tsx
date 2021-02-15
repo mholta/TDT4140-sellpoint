@@ -1,5 +1,5 @@
 export enum RootRoutes {
-  registerUser = '/registerUser',
+  registerUser = '/register',
 }
 
 export default RootRoutes;

@@ -1,6 +1,6 @@
 import { Field, Formik } from 'formik';
 import React from 'react';
-import { InputField } from '../components/fields/InputField';
+import { InputField } from '../../../components/fields/InputField';
 
 function RegisterForm() {
   return (
