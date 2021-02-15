@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Allowing localhost to use api
     'corsheaders',
     'user',
+    'product',
 ]
 
 MIDDLEWARE = [
