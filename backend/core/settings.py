@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     # Allowing localhost to use api
-    'corsheaders'
+    'corsheaders',
+    'user',
 ]
 
 MIDDLEWARE = [
