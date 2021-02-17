@@ -1,0 +1,14 @@
+h1 {
+}
+
+a,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: underline;
+}
