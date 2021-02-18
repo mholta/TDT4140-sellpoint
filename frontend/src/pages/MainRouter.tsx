@@ -1,6 +1,7 @@
 import { Switch, Route, useLocation } from 'react-router-dom';
 import RootRoutes from './RootRoutes';
 import RegisterUserPage from './RegisterUser/RegisterUserPage';
+import LoginUserPage from './LoginUser/LoginUserPage';
 
 const MainRouter = () => {
   const location = useLocation();
@@ -10,6 +11,11 @@ const MainRouter = () => {
       <Route
         path={RootRoutes.registerUser}
         component={RegisterUserPage}
+        key={location.key}
+      />
+      <Route
+        path={RootRoutes.loginUser}
+        component={LoginUserPage}
         key={location.key}
       />
     </Switch>
