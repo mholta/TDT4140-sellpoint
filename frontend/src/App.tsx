@@ -1,18 +1,15 @@
 import React from 'react';
-import ApiTest from './components/apiTest';
-import NavigationBar from './components/navBar';
 import { BrowserRouter as Router } from 'react-router-dom';
+import './styles/main.css';
 import MainRouter from './pages/MainRouter';
 
 const App = () => {
   return (
-    <div>
-      <NavigationBar />
+    <>
       <Router>
         <MainRouter />
       </Router>
-      <ApiTest />
-    </div>
+    </>
   );
 };
 
