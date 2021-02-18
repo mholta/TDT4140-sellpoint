@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Profile } from '../../../components/api/types';
+import { User } from '../../../components/api/types';
 import Image from '../../../components/generics/image';
 import {
   Container,
@@ -19,10 +19,10 @@ import { LinkUnderline } from '../../../components/generics/links';
  * @returns profile page element
  */
 const ProfileSection = ({
-  name,
+  first_name,
+  last_name,
   email,
   phone_number,
-  image,
   location = 'Trondheim, Norge',
 }: ProfileProps) => {
   /* Fall back to default image if no image url is passed in */
@@ -35,7 +35,7 @@ const ProfileSection = ({
       <Container>
         <ProfileInfoGrid>
           <ProfileDataWrapper>
-            <h1>{name}</h1>
+            <h1>{first_name + ' ' + last_name}</h1>
             <div>{location}</div>
             <div>{phone_number}</div>
             <LinkUnderline
@@ -104,7 +104,7 @@ const ProfileInfoGrid = styled.div`
   column-gap: 2rem;
 `;
 
-export interface ProfileProps extends Profile {
+export interface ProfileProps extends User {
   location?: string;
 }
 

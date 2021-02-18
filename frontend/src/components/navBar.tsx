@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
 import RootRoutes from '../pages/RootRoutes';
 import Logo from '../statics/logo.svg';
@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <NavWrapper>
       <ImageWrapper>
-        <img src={Logo} />
+        <img src={Logo} alt="SellPoint" />
       </ImageWrapper>
       <MenuList>
         <li>
