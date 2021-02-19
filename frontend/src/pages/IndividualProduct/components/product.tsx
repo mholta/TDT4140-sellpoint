@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ProductDb, User } from '../../../components/api/types';
+import { ProductDb } from '../../../components/api/types';
 import Image from '../../../components/generics/image';
 import {
   Container,
   Section,
 } from '../../../components/generics/layoutGenerics';
-import { LinkUnderline } from '../../../components/generics/links';
 import DeleteProduct from './deleteProductButton';
 
 const ProductSection = ({
@@ -40,31 +39,6 @@ const ProductSection = ({
     </Section>
   );
 };
-
-/**
- * Background component
- */
-const BackgroundLayer = styled.div`
-  position: absolute;
-  z-index: -2;
-  top: 0;
-  right: 0;
-  bottom: -10rem;
-  left: 0;
-
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: -5rem;
-    left: -3rem;
-    width: 200%;
-    height: calc(100% - 4rem);
-    transform: rotateZ(-4deg);
-    background-color: #d9afd9;
-    background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
-  }
-`;
 
 /**
  * Wrapper for holding name, email and phone number.

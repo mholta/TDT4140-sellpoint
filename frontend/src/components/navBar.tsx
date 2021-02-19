@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import RootRoutes from '../pages/RootRoutes';
 import Logo from '../statics/logo.svg';
 import { LinkUnderline } from './generics/links';
+import ProfileNavLink from './nav/profileNavLink';
 
 const Navbar = () => {
   return (
@@ -21,7 +22,7 @@ const Navbar = () => {
         </li>
       </MenuList>
       <ProfileWrapper>
-        <LinkUnderline to={RootRoutes.userView}>isNotLoggedIn</LinkUnderline>
+        <ProfileNavLink />
       </ProfileWrapper>
     </NavWrapper>
   );

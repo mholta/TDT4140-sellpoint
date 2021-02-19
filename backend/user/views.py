@@ -9,16 +9,30 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
  
-class UserView(generics.CreateAPIView):
+class user(generics.CreateAPIView):
 #class ProductView(generics.ListAPIView):
   queryset = User.objects.all()
   serializer_class = UserSerializer
 
-def UserList(request):
-  if request.method == 'GET':
-    users = User.objects.all()
-    seializer = UserSerializer(users, many = True)
-    return JsonResponse(seializer.data, safe=False)
+@api_view(['POST'])
+def user_view(request):
+  if request.method == 'POST':
+    # Checks is user with email exists in db
+    if (User.objects.all().filter(email=request.data['email']).count() > 0):
+      # Get user with matching email
+      user = User.objects.get(email=request.data['email'])
+      # Checks if password matches
+      print(user.password)
+      if (request.data['password'] == user.password):
+        # Send json responce with the user object
+        serializer = UserSerializer(user, many = False)
+        return JsonResponse(serializer.data, safe=False)
+      else:
+        # If passowrd is wrong
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    else:
+      # If user is not found with email
+      return Response(status=status.HTTP_404_NOT_FOUND)
 
 class UserDetailedView(generics.RetrieveAPIView):
   queryset = User.objects.all()

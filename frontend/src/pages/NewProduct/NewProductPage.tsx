@@ -3,12 +3,13 @@ import Navbar from '../../components/navBar';
 import NewProductForm from './components/newProductForm';
 
 const NewProductPage = () => {
+  console.log('hei');
   return (
     <>
       <Navbar />
       <Section>
         <Container style={{ maxWidth: '20rem' }}>
-          <h1>Registrer bruker</h1>
+          <h1>Nytt produkt</h1>
           <NewProductForm />
         </Container>
       </Section>
