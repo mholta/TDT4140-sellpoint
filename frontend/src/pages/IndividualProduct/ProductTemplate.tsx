@@ -25,7 +25,7 @@ const ProductTemplate = () => {
       <UserProfilePageWrapper>
         {service.status === LoadStates.LOADING && <div>Loading</div>}
         {service.status === LoadStates.LOADED && (
-          <ProductSection {...service.payload} />
+          <ProductSection {...service.payload} id={id} />
         )}
         {service.status === LoadStates.ERROR && <div>Error</div>}
       </UserProfilePageWrapper>
