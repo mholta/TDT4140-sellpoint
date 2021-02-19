@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { LoadStates, Service } from './loadStates';
-import { User } from './types';
 
 /**
  * Service for getting user data by HTTP GET.
  *
  * @param url
  */
-export const GetUserApiService = (url: string) => {
+export const GetReqApiService = (url: string) => {
   const [result, setResult] = useState<Service<any>>({
     status: LoadStates.LOADING,
   });
@@ -16,7 +15,7 @@ export const GetUserApiService = (url: string) => {
 
   useEffect(() => {
     axios
-      .get<User>(url)
+      .get<any>(url)
       .then((response) => response.data)
       .then((response) =>
         setResult({ status: LoadStates.LOADED, payload: response })

@@ -1,8 +1,11 @@
+import { Button } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
-import { GetUserApiService } from '../../components/api/getUser';
+import { GetReqApiService } from '../../components/api/getUser';
 import { LoadStates } from '../../components/api/loadStates';
 import Navbar from '../../components/navBar';
+import RootRoutes from '../RootRoutes';
+import UserProductList from './components/productList';
 import ProfileSection from './components/profile';
 
 /**
@@ -14,7 +17,7 @@ import ProfileSection from './components/profile';
  */
 const UserProfilePage = () => {
   /* Use api service for getting user and showing different states */
-  const service = GetUserApiService('http://127.0.0.1:8000/user/1');
+  const service = GetReqApiService('http://127.0.0.1:8000/user/1');
   console.log(service);
   return (
     <>
@@ -25,6 +28,14 @@ const UserProfilePage = () => {
           <ProfileSection {...service.payload} />
         )}
         {service.status === LoadStates.ERROR && <div>Error</div>}
+        <UserProductList />
+        <Button
+          href={RootRoutes.newProduct}
+          color="primary"
+          variant="contained"
+        >
+          Opprett produkt
+        </Button>
       </UserProfilePageWrapper>
     </>
   );
