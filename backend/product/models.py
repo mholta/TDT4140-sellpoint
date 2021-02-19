@@ -17,7 +17,7 @@ def generate_unique_product_code():
 class Product(models.Model):
   title = models.CharField( max_length=16, default="", unique=False)
   description = models.TextField(  default="", unique=False)
-  image = models.CharField( max_length=16, default="", unique=False)
+  image = models.URLField( max_length=200, default="")
   price = models.FloatField( default=0)
   created_at = models.DateTimeField( auto_now_add=True)
   # Later on

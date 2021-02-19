@@ -3,6 +3,8 @@ export enum RootRoutes {
   loginUser = '/login',
   userView = '/user',
   newProduct = '/products/new',
+  individualProduct = '/product/:id',
+  individualProductWithoutId = '/product/',
 }
 
 export default RootRoutes;

@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-
+# Method for getting all products by sending HTTP GET to /all
 @api_view(['GET'])
 def product_list(request):
   if request.method == 'GET':
@@ -16,6 +16,12 @@ def product_list(request):
     seializer = ProductSerializer(produtcs, many = True)
     return JsonResponse(seializer.data, safe=False)
 
+# Method for getting one product by sending HTTP GET with /<pk>
+class product_detailed(generics.RetrieveAPIView):
+  queryset = Product.objects.all()
+  serializer_class = ProductSerializer
+
+# Method for adding one product by sending HTTP POST
 @api_view(['POST'])
 def product(request):
   if request.method == 'POST':
