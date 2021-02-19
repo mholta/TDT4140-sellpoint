@@ -54,9 +54,7 @@ const NewProductForm = () => {
         .catch((error) => {
           console.error(error);
           // TODO: Add custom alert
-          alert(
-            'Det eksisterer allerede et produkt med tittel"' + data.title + '".'
-          );
+          alert('Bilde må være en url.');
         });
     },
   });

@@ -4,6 +4,7 @@ import RegisterUserPage from './RegisterUser/RegisterUserPage';
 import LoginUserPage from './LoginUser/LoginUserPage';
 import UserProfilePage from './UserProfile/UserProfilePage';
 import NewProductPage from './NewProduct/NewProductPage';
+import ProductTemplate from './IndividualProduct/ProductTemplate';
 
 const MainRouter = () => {
   const location = useLocation();
@@ -28,6 +29,11 @@ const MainRouter = () => {
       <Route
         path={RootRoutes.newProduct}
         component={NewProductPage}
+        key={location.key}
+      />
+      <Route
+        path={RootRoutes.individualProduct}
+        component={ProductTemplate}
         key={location.key}
       />
     </Switch>
