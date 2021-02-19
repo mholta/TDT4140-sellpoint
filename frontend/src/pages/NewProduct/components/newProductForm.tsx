@@ -95,7 +95,7 @@ const NewProductForm = () => {
           helperText={formik.touched.image && formik.errors.image}
         />
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Registrer
+          Opprett produkt
         </Button>
       </form>
     </div>

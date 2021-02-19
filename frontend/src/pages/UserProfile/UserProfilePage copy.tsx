@@ -1,7 +1,8 @@
 import { Button } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { GetReqApiService } from '../../components/api/getUser';
+import { LoadStates } from '../../components/api/loadStates';
 import Navbar from '../../components/navBar';
 import RootRoutes from '../RootRoutes';
 import UserProductList from './components/productList';
@@ -19,32 +20,26 @@ import { RootState } from '../../redux';
  * @returns User profile page
  */
 const UserProfilePage = () => {
-  // TODO: Issue with mounting
+  const dispatch = useDispatch();
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
-  if (!userState.isLoggedIn) history.push(RootRoutes.loginUser);
+  //if (!userState.isLoggedIn) history.push(RootRoutes.loginUser);
 
-  const dispatch = useDispatch();
+  /* Use api service for getting user and showing different states */
+  const service = GetReqApiService('http://127.0.0.1:8000/user/1');
+  console.log(service);
   return (
     <>
       <Navbar />
       <UserProfilePageWrapper>
-        {userState.isLoggedIn && (
-          <ProfileSection
-            first_name={userState.userData.firstName}
-            last_name={userState.userData.lastName}
-            email={userState.userData.email}
-            phone_number={userState.userData.phoneNumber}
-          />
+        {service.status === LoadStates.LOADING && <div>Loading</div>}
+        {service.status === LoadStates.LOADED && (
+          <ProfileSection {...service.payload} />
         )}
-
+        {service.status === LoadStates.ERROR && <div>Error</div>}
         <UserProductList />
         <Button
           href={RootRoutes.newProduct}
-          onClick={(e: any) => {
-            e.preventDefault();
-            history.push(RootRoutes.newProduct);
-          }}
           color="primary"
           variant="contained"
         >

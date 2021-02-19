@@ -105,7 +105,7 @@ const ProfileInfoGrid = styled.div`
   column-gap: 2rem;
 `;
 
-export interface ProfileProps extends User {
+export interface ProfileProps extends Partial<User> {
   location?: string;
 }
 
