@@ -15,8 +15,10 @@ def generate_unique_product_code():
 
 # Create your models here.
 class Product(models.Model):
-  product_id = models.CharField(max_length=8, default="", unique=True)
-  name = models.CharField( max_length=16, default="", unique=False)
+  title = models.CharField( max_length=16, default="", unique=False)
+  description = models.TextField(  default="", unique=False)
+  image = models.CharField( max_length=16, default="", unique=False)
   price = models.FloatField( default=0)
   created_at = models.DateTimeField( auto_now_add=True)
-  owner = models.name = models.ForeignKey(User, blank='True', on_delete=models.CASCADE)
+  # Later on
+  #owner = models.name = models.ForeignKey(User, blank='True', on_delete=models.CASCADE)

@@ -3,6 +3,7 @@ import RootRoutes from './RootRoutes';
 import RegisterUserPage from './RegisterUser/RegisterUserPage';
 import LoginUserPage from './LoginUser/LoginUserPage';
 import UserProfilePage from './UserProfile/UserProfilePage';
+import NewProductPage from './NewProduct/NewProductPage';
 
 const MainRouter = () => {
   const location = useLocation();
@@ -22,6 +23,11 @@ const MainRouter = () => {
       <Route
         path={RootRoutes.loginUser}
         component={LoginUserPage}
+        key={location.key}
+      />
+      <Route
+        path={RootRoutes.newProduct}
+        component={NewProductPage}
         key={location.key}
       />
     </Switch>

@@ -15,3 +15,13 @@ export interface User {
   phone_number: string;
   password: string;
 }
+
+/**
+ * Is used for making sure Product object matches Produc object in backend
+ */
+export interface ProductDb {
+  title: string;
+  description: string;
+  image: string;
+  price: number;
+}
