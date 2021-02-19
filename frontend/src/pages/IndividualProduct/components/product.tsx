@@ -7,12 +7,14 @@ import {
   Section,
 } from '../../../components/generics/layoutGenerics';
 import { LinkUnderline } from '../../../components/generics/links';
+import DeleteProduct from './deleteProductButton';
 
 const ProductSection = ({
   title = '',
   description = '',
   price = 0,
   image = '',
+  id,
 }: ProductProps) => {
   /* Fall back to default image if no image url is passed in */
   const defaultImageUrl =
@@ -33,6 +35,7 @@ const ProductSection = ({
             aspectRatio="4:3"
           />
         </ProfileInfoGrid>
+        <DeleteProduct id={id} />
       </Container>
     </Section>
   );
@@ -93,6 +96,7 @@ const ProfileInfoGrid = styled.div`
 
 export interface ProductProps extends ProductDb {
   location?: string;
+  id: number;
 }
 
 export default ProductSection;

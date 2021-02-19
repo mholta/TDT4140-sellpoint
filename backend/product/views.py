@@ -22,7 +22,7 @@ class product_detailed(generics.RetrieveAPIView):
   serializer_class = ProductSerializer
 
 # Method for adding one product by sending HTTP POST
-@api_view(['POST'])
+@api_view(['POST','DELETE'])
 def product(request):
   if request.method == 'POST':
     serializer = ProductSerializer(data=request.data)
@@ -31,3 +31,6 @@ def product(request):
       return Response(serializer.data, status=status.HTTP_201_CREATED)
       # Implement error handling when trying to post a user that already exists
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+  elif request.method == 'DELETE':
+    Product.objects.get(pk=request.data['pk']).delete()
+    return HttpResponse()
