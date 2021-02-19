@@ -1,8 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Profile } from './types';
+import { useEffect, useState } from 'react';
+import { LoadStates, Service } from './loadStates';
+import { User } from './types';
 
-export const UseApiService = (url: string) => {
+/**
+ * Service for getting user data by HTTP GET.
+ *
+ * @param url
+ */
+export const GetUserApiService = (url: string) => {
   const [result, setResult] = useState<Service<any>>({
     status: LoadStates.LOADING,
   });
@@ -10,7 +16,7 @@ export const UseApiService = (url: string) => {
 
   useEffect(() => {
     axios
-      .get<Profile>(url)
+      .get<User>(url)
       .then((response) => response.data)
       .then((response) =>
         setResult({ status: LoadStates.LOADED, payload: response })
@@ -19,38 +25,7 @@ export const UseApiService = (url: string) => {
         setResult({ status: LoadStates.ERROR, error });
         console.error('Failed to get user from db -' + error.message);
       });
-  }, []);
+  }, [url]);
 
   return result;
 };
-
-export type Service<T> =
-  | ServiceInit
-  | ServiceLoading
-  | ServiceLoaded<T>
-  | ServiceError;
-
-interface ServiceInit {
-  status: LoadStates.INIT;
-}
-
-interface ServiceLoading {
-  status: LoadStates.LOADING;
-}
-
-interface ServiceLoaded<T> {
-  status: LoadStates.LOADED;
-  payload: T;
-}
-
-interface ServiceError {
-  status: LoadStates.ERROR;
-  error: Error;
-}
-
-export enum LoadStates {
-  INIT = 'init',
-  LOADING = 'loading',
-  LOADED = 'loaded',
-  ERROR = 'error',
-}
