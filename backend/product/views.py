@@ -25,6 +25,7 @@ class product_detailed(generics.RetrieveAPIView):
 @api_view(['POST','DELETE'])
 def product(request):
   if request.method == 'POST':
+    print(request.data)
     serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
       serializer.save()

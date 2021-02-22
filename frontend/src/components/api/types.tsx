@@ -24,4 +24,5 @@ export interface ProductDb {
   description: string;
   image: string;
   price: number;
+  email?: string;
 }
