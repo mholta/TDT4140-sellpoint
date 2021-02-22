@@ -7,8 +7,6 @@ import axios from 'axios';
 import { ProductDb } from '../../../components/api/types';
 import { useHistory } from 'react-router-dom';
 import RootRoutes from '../../RootRoutes';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux';
 
 /**
  * Variable holding Yup-object for form validation.
@@ -20,19 +18,18 @@ const validationSchema = yup.object({
 });
 
 /**
- * Add new product form.
+ * Edit product form.
  *
  * Sends user data with HTTP POST to backend.
  */
-const NewProductForm = () => {
+const EditProductForm = ({ title, description, image, price }: ProductDb) => {
   const history = useHistory();
-  const userState = useSelector((state: RootState) => state.user);
   const formik = useFormik({
     initialValues: {
-      title: '',
-      price: '',
-      description: '',
-      image: '',
+      title: title,
+      description: description,
+      image: image,
+      price: price,
     },
     validationSchema: validationSchema,
     onSubmit: (data) => {
@@ -41,12 +38,9 @@ const NewProductForm = () => {
         title: data.title,
         description: data.description,
         image: data.image,
-        email: userState.isLoggedIn ? userState.userData.email : '',
-        price: Number(data.price),
+        price: data.price,
       };
-
       console.log('Submitted form data:', data);
-
       /* Performing HTTP POST to backend using axios library */
       axios
         .post<ProductDb>('http://localhost:8000/product/', product)
@@ -78,16 +72,6 @@ const NewProductForm = () => {
         />
         <TextField
           fullWidth
-          id="price"
-          name="price"
-          label="Pris"
-          value={formik.values.price}
-          onChange={formik.handleChange}
-          error={formik.touched.price && Boolean(formik.errors.price)}
-          helperText={formik.touched.price && formik.errors.price}
-        />
-        <TextField
-          fullWidth
           rows="6"
           multiline
           id="description"
@@ -102,6 +86,16 @@ const NewProductForm = () => {
         />
         <TextField
           fullWidth
+          id="price"
+          name="price"
+          label="Pris"
+          value={formik.values.price}
+          onChange={formik.handleChange}
+          error={formik.touched.price && Boolean(formik.errors.price)}
+          helperText={formik.touched.price && formik.errors.price}
+        />
+        <TextField
+          fullWidth
           id="image"
           name="image"
           label="Bilde"
@@ -111,81 +105,13 @@ const NewProductForm = () => {
           helperText={formik.touched.image && formik.errors.image}
         />
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Opprett produkt
+          Lagre endringer
         </Button>
       </form>
     </div>
   );
 };
 
-export default NewProductForm;
+export default EditProductForm;
 
-/*import { Field, Formik } from 'formik';
-import React from 'react';
-import { InputField } from '../../../components/fields/InputField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-  }),
-);
-
-function RegisterForm() {
-  const classes = useStyles();
-
-  return (
-    <Formik
-      onSubmit={(data) => {
-        console.log(data);
-      }}
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        password: '',
-      }}
-    >
-      {({ handleSubmit }) => (
-        <form className={classes.root} onSubmit={ handleSubmit } >
-          <Field
-            name="firstName"
-            placeholder="Fornavn"
-            component={InputField}
-          />
-          <Field
-            name="lastName"
-            placeholder="Etternavn"
-            component={InputField}
-          />
-          <Field
-            name="email"
-            placeholder="E-postadresse"
-            component={InputField}
-          />
-          <Field
-            name="phoneNumber"
-            placeholder="Mobilnummer"
-            component={InputField}
-          />
-          <Field
-            name="password"
-            placeholder="Passord"
-            type="password"
-            component={InputField}
-          />
-          <button type="submit">Registrer</button>
-        </form>
-      )}
-    </Formik>
-  );
-}
-
-export default RegisterForm;
-*/
+//Funksjon for å hente data fra backend som returnerer title, description, price og bilde?

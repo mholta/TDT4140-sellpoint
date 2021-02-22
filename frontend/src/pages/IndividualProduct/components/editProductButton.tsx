@@ -8,12 +8,12 @@ import RootRoutes from '../../RootRoutes';
  * Button that deletes a product with given id
  * @param id of the product
  */
-const DeleteProduct = ({ id }: DeleteButtonProps) => {
+const EditProduct = ({ id }: EditButtonProps) => {
   const history = useHistory();
   const handleOnClick = () => {
     // Send a delete request with the products primary key
     axios
-      .delete<any>('http://127.0.0.1:8000/product/', {
+      .post<any>('http://127.0.0.1:8000/product/', {
         data: { pk: id },
       })
       // Log the result to the console
@@ -27,14 +27,14 @@ const DeleteProduct = ({ id }: DeleteButtonProps) => {
       });
   };
   return (
-    <Button onClick={handleOnClick} color="secondary" variant="contained">
-      Slett produkt
+    <Button onClick={handleOnClick} color="primary" variant="contained">
+      Rediger produkt
     </Button>
   );
 };
 
-interface DeleteButtonProps {
+interface EditButtonProps {
   id: number;
 }
 
-export default DeleteProduct;
+export default EditProduct;
