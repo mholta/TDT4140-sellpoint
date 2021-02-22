@@ -8,6 +8,8 @@ import {
 } from '../../../components/generics/layoutGenerics';
 import DeleteProduct from './deleteProductButton';
 import OwnerDetails from './ownerDetails';
+import EditProduct from './editProductButton';
+import EditProductForm from './editProductForm';
 
 const ProductSection = ({
   title = '',
@@ -27,9 +29,10 @@ const ProductSection = ({
         <ProfileInfoGrid>
           <ProfileDataWrapper>
             <h1>{title}</h1>
+            <div>{price} kr</div>
             <p>{description}</p>
             <div>{price}</div>
-            <OwnerDetails email={email}/>
+            <OwnerDetails email={email} />
           </ProfileDataWrapper>
           <Image
             src={image ?? defaultImageUrl} // add 'image ?? ' in front of this to provide given image url it set, else fall back to default image
@@ -37,7 +40,14 @@ const ProductSection = ({
             aspectRatio="4:3"
           />
         </ProfileInfoGrid>
+        <EditProduct id={id} />
         <DeleteProduct id={id} />
+        <EditProductForm
+          title={title}
+          description={description}
+          price={price}
+          image={image}
+        />
       </Container>
     </Section>
   );
