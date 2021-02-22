@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { GetReqApiService } from '../../components/api/getUser';
 import { LoadStates } from '../../components/api/loadStates';
 import Navbar from '../../components/navBar';
+import OwnerDetails from './components/ownerDetails';
 import ProductSection from './components/product';
 
 /**
@@ -25,7 +26,9 @@ const ProductTemplate = () => {
       <UserProfilePageWrapper>
         {service.status === LoadStates.LOADING && <div>Loading</div>}
         {service.status === LoadStates.LOADED && (
-          <ProductSection {...service.payload} id={id} />
+          <>
+            <ProductSection {...service.payload} id={id} /> {/* Everything (...) in payload is sent to ProductSection */}
+          </>
         )}
         {service.status === LoadStates.ERROR && <div>Error</div>}
       </UserProfilePageWrapper>

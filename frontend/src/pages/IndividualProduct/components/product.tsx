@@ -7,12 +7,14 @@ import {
   Section,
 } from '../../../components/generics/layoutGenerics';
 import DeleteProduct from './deleteProductButton';
+import OwnerDetails from './ownerDetails';
 
 const ProductSection = ({
   title = '',
   description = '',
   price = 0,
   image = '',
+  email = '',
   id,
 }: ProductProps) => {
   /* Fall back to default image if no image url is passed in */
@@ -27,6 +29,7 @@ const ProductSection = ({
             <h1>{title}</h1>
             <p>{description}</p>
             <div>{price}</div>
+            <OwnerDetails email={email}/>
           </ProfileDataWrapper>
           <Image
             src={image ?? defaultImageUrl} // add 'image ?? ' in front of this to provide given image url it set, else fall back to default image

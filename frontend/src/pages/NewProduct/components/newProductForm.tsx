@@ -7,6 +7,8 @@ import axios from 'axios';
 import { ProductDb } from '../../../components/api/types';
 import { useHistory } from 'react-router-dom';
 import RootRoutes from '../../RootRoutes';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux';
 
 /**
  * Variable holding Yup-object for form validation.
@@ -24,6 +26,7 @@ const validationSchema = yup.object({
  */
 const NewProductForm = () => {
   const history = useHistory();
+  const userState = useSelector((state: RootState) => state.user);
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -38,6 +41,7 @@ const NewProductForm = () => {
         description: data.description,
         image: data.image,
         price: 100,
+        email: userState.isLoggedIn? userState.userData.email:'',
       };
 
       console.log('Submitted form data:', data);
