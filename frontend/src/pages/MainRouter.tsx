@@ -6,6 +6,7 @@ import UserProfilePage from './UserProfile/UserProfilePage';
 import NewProductPage from './NewProduct/NewProductPage';
 import ProductTemplate from './IndividualProduct/ProductTemplate';
 import OwnerProfilePage from './OwnerProfile/OwnerProfilePage';
+import HomePage from './HomePage/homePage';
 
 const MainRouter = () => {
   const location = useLocation();
@@ -41,6 +42,11 @@ const MainRouter = () => {
       <Route
         path={RootRoutes.individualProduct}
         component={ProductTemplate}
+        key={location.key}
+      />
+      <Route
+        path={RootRoutes.homePage}
+        component={HomePage}
         key={location.key}
       />
     </Switch>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import RootRoutes from '../pages/RootRoutes';
 import Logo from '../statics/logo.svg';
@@ -8,9 +9,11 @@ import ProfileNavLink from './nav/profileNavLink';
 const Navbar = () => {
   return (
     <NavWrapper>
-      <ImageWrapper>
-        <img src={Logo} alt="SellPoint" />
-      </ImageWrapper>
+        <Link to = { RootRoutes.homePage }>
+        <ImageWrapper>
+          <img src={Logo} alt="SellPoint" />
+       </ImageWrapper>
+      </Link>
       <MenuList>
         <li>
           <LinkUnderline to={RootRoutes.registerUser}>
