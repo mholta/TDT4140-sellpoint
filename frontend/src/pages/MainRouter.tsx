@@ -5,6 +5,7 @@ import LoginUserPage from './LoginUser/LoginUserPage';
 import UserProfilePage from './UserProfile/UserProfilePage';
 import NewProductPage from './NewProduct/NewProductPage';
 import ProductTemplate from './IndividualProduct/ProductTemplate';
+import OwnerProfilePage from './OwnerProfile/OwnerProfilePage';
 
 const MainRouter = () => {
   const location = useLocation();
@@ -17,8 +18,14 @@ const MainRouter = () => {
         key={location.key}
       />
       <Route
+        exact /* */
         path={RootRoutes.userView}
         component={UserProfilePage}
+        key={location.key}
+      />
+      <Route
+        path={RootRoutes.ownerView}
+        component={OwnerProfilePage}
         key={location.key}
       />
       <Route

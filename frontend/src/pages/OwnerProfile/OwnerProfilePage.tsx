@@ -1,16 +1,16 @@
 import { Button } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { GetReqApiService } from '../../components/api/getUser';
-import { LoadStates } from '../../components/api/loadStates';
 import Navbar from '../../components/navBar';
 import RootRoutes from '../RootRoutes';
 import UserProductList from './components/productList';
 import ProfileSection from './components/profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/user/user.actions';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { RootState } from '../../redux';
+import { LoadStates } from '../../components/api/loadStates';
 
 /**
  * Page wrapper component for User profile page.
@@ -19,27 +19,35 @@ import { RootState } from '../../redux';
  *
  * @returns User profile page
  */
-const UserProfilePage = () => {
-  const dispatch = useDispatch();
+const OwnerProfilePage = () => {
+  let { email } = useParams<ParamTypes>(); /* Henter det som er bak url-en */
+  // TODO: Issue with mounting
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
-  //if (!userState.isLoggedIn) history.push(RootRoutes.loginUser);
 
-  /* Use api service for getting user and showing different states */
-  const service = GetReqApiService('http://127.0.0.1:8000/user/1');
-  console.log(service);
+  const dispatch = useDispatch();
+  console.log(email);
+  const service = GetReqApiService('http://127.0.0.1:8000/user/' + email);
   return (
     <>
       <Navbar />
-      <UserProfilePageWrapper>
+      <OwnerProfilePageWrapper>
         {service.status === LoadStates.LOADING && <div>Loading</div>}
         {service.status === LoadStates.LOADED && (
-          <ProfileSection {...service.payload} />
+          <>
+            <ProfileSection {...service.payload} />{' '}
+            {/* Everything (...) in payload is sent to ProductSection */}
+          </>
         )}
         {service.status === LoadStates.ERROR && <div>Error</div>}
+
         <UserProductList />
         <Button
           href={RootRoutes.newProduct}
+          onClick={(e: any) => {
+            e.preventDefault();
+            history.push(RootRoutes.newProduct);
+          }}
           color="primary"
           variant="contained"
         >
@@ -55,13 +63,17 @@ const UserProfilePage = () => {
         >
           Logg ut
         </Button>
-      </UserProfilePageWrapper>
+      </OwnerProfilePageWrapper>
     </>
   );
 };
 
-const UserProfilePageWrapper = styled.div`
+const OwnerProfilePageWrapper = styled.div`
   position: relative;
 `;
 
-export default UserProfilePage;
+interface ParamTypes {
+  email: string | undefined;
+}
+
+export default OwnerProfilePage;
