@@ -40,13 +40,14 @@ const ProductSection = ({
             aspectRatio="4:3"
           />
         </ProfileInfoGrid>
-        <EditProduct id={id} />
         <DeleteProduct id={id} />
         <EditProductForm
           title={title}
           description={description}
           price={price}
           image={image}
+          email={email}
+          id={id}
         />
       </Container>
     </Section>

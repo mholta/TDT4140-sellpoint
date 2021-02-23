@@ -20,6 +20,7 @@ export interface User {
  * Is used for making sure Product object matches Produc object in backend
  */
 export interface ProductDb {
+  id?: number;
   title: string;
   description: string;
   image: string;
