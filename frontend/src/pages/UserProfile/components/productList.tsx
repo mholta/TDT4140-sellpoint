@@ -18,7 +18,7 @@ const UserProductList = () => {
             <li key={index}>
               <Link to={RootRoutes.individualProductWithoutId + data.id}>
                 {data.title + ' - ' + data.description}
-              </Link>{' '}
+              </Link>
             </li>
           ))}
         </ul>

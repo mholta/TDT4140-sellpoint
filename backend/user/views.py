@@ -9,13 +9,14 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
  
-class user(generics.CreateAPIView):
-#class ProductView(generics.ListAPIView):
+#class user(generics.CreateAPIView):
+class user(generics.ListAPIView):
   queryset = User.objects.all()
   serializer_class = UserSerializer
 
-@api_view(['POST'])
+@api_view(['POST','PUT','DELETE'])
 def user_view(request):
+  print(request)
   if request.method == 'POST':
     # Checks is user with email exists in db
     if (User.objects.all().filter(email=request.data['email']).count() > 0):
@@ -33,6 +34,21 @@ def user_view(request):
     else:
       # If user is not found with email
       return Response(status=status.HTTP_404_NOT_FOUND)
+  elif request.method == 'PUT':
+    print(request.data['user'])
+    try:
+        user = User.objects.get(pk=request.data['org_email'])
+    except User.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = UserSerializer(user, data=request.data['user'])
+    if serializer.is_valid():
+      print(request.data) 
+      serializer.save()
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+  elif request.method == 'DELETE':
+    User.objects.get(pk=request.data['pk']).delete()
+    return HttpResponse()
 
 class UserDetailedView(generics.RetrieveAPIView):
   queryset = User.objects.all()

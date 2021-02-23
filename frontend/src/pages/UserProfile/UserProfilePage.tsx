@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/user/user.actions';
 import { useHistory } from 'react-router-dom';
 import { RootState } from '../../redux';
+import EditUserForm from './components/editUserForm';
 
 /**
  * Page wrapper component for User profile page.
@@ -27,40 +28,47 @@ const UserProfilePage = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <Navbar />
-      <UserProfilePageWrapper>
-        {userState.isLoggedIn && (
-          <ProfileSection
-            first_name={userState.userData.firstName}
-            last_name={userState.userData.lastName}
-            email={userState.userData.email}
-            phone_number={userState.userData.phoneNumber}
-          />
-        )}
-
-        <UserProductList />
-        <Button
-          href={RootRoutes.newProduct}
-          onClick={(e: any) => {
-            e.preventDefault();
-            history.push(RootRoutes.newProduct);
-          }}
-          color="primary"
-          variant="contained"
-        >
-          Opprett produkt
-        </Button>
-        <Button
-          onClick={() => {
-            dispatch(logOut());
-            history.push(RootRoutes.loginUser);
-          }}
-          color="secondary"
-          variant="contained"
-        >
-          Logg ut
-        </Button>
-      </UserProfilePageWrapper>
+      {userState.isLoggedIn && (
+        <>
+          <Navbar />
+          <UserProfilePageWrapper>
+            <ProfileSection
+              first_name={userState.userData.firstName}
+              last_name={userState.userData.lastName}
+              email={userState.userData.email}
+              phone_number={userState.userData.phoneNumber}
+            />
+            <UserProductList />
+            <Button
+              href={RootRoutes.newProduct}
+              onClick={(e: any) => {
+                e.preventDefault();
+                history.push(RootRoutes.newProduct);
+              }}
+              color="primary"
+              variant="contained"
+            >
+              Opprett produkt
+            </Button>
+            <Button
+              onClick={() => {
+                dispatch(logOut());
+                history.push(RootRoutes.loginUser);
+              }}
+              color="secondary"
+              variant="contained"
+            >
+              Logg ut
+            </Button>
+            <EditUserForm
+              firstName={userState.userData.firstName}
+              lastName={userState.userData.lastName}
+              email={userState.userData.email}
+              phoneNumber={userState.userData.phoneNumber}
+            />
+          </UserProfilePageWrapper>
+        </>
+      )}
     </>
   );
 };
