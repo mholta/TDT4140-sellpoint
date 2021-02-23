@@ -19,7 +19,7 @@ const OwnerDetails = ({ email }: OwnerProps) => {
     <div>
       {service.status === LoadStates.LOADING && <div>Loading</div>}
       {service.status === LoadStates.LOADED && (
-        <Link to={RootRoutes.ownerView + '/' + service.payload.email}>
+        <Link to={RootRoutes.ownerViewWithoutId + service.payload.email}>
           {service.payload.first_name + ' ' + service.payload.last_name}
         </Link>
       )}

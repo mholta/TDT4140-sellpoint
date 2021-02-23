@@ -20,7 +20,7 @@ const EditProduct = ({ id }: EditButtonProps) => {
       .then((response) => console.log(response))
       // Redirect to profilepage when deleted
       .then(() => {
-        history.push(RootRoutes.userView);
+        history.push(RootRoutes.individualProductWithoutId + id);
       })
       .catch((error) => {
         console.log(error);

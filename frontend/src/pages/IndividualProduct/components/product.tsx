@@ -10,6 +10,8 @@ import DeleteProduct from './deleteProductButton';
 import OwnerDetails from './ownerDetails';
 import EditProduct from './editProductButton';
 import EditProductForm from './editProductForm';
+import { RootState } from '../../../redux';
+import { useSelector } from 'react-redux';
 
 const ProductSection = ({
   title = '',
@@ -19,6 +21,7 @@ const ProductSection = ({
   email = '',
   id,
 }: ProductProps) => {
+  const userState = useSelector((state: RootState) => state.user);
   /* Fall back to default image if no image url is passed in */
   const defaultImageUrl =
     'https://images.unsplash.com/photo-1492546662075-aabebf46dee2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80';
@@ -40,15 +43,19 @@ const ProductSection = ({
             aspectRatio="4:3"
           />
         </ProfileInfoGrid>
-        <DeleteProduct id={id} />
-        <EditProductForm
-          title={title}
-          description={description}
-          price={price}
-          image={image}
-          email={email}
-          id={id}
-        />
+        {userState.isLoggedIn && userState.userData.email === email && (
+          <>
+            <DeleteProduct id={id} />
+            <EditProductForm
+              title={title}
+              description={description}
+              price={price}
+              image={image}
+              email={email}
+              id={id}
+            />
+          </>
+        )}
       </Container>
     </Section>
   );

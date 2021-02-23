@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import { GetReqApiService } from '../../components/api/getUser';
 import Navbar from '../../components/navBar';
 import RootRoutes from '../RootRoutes';
-import UserProductList from './components/productList';
 import ProfileSection from './components/profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/user/user.actions';
 import { useHistory, useParams } from 'react-router-dom';
 import { RootState } from '../../redux';
 import { LoadStates } from '../../components/api/loadStates';
+import UserProductList from '../UserProfile/components/productList';
 
 /**
  * Page wrapper component for User profile page.
@@ -24,6 +24,9 @@ const OwnerProfilePage = () => {
   // TODO: Issue with mounting
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
+
+  if (userState.isLoggedIn && userState.userData.email === email)
+    history.push(RootRoutes.userView);
 
   const dispatch = useDispatch();
   console.log(email);
@@ -41,28 +44,7 @@ const OwnerProfilePage = () => {
         )}
         {service.status === LoadStates.ERROR && <div>Error</div>}
 
-        <UserProductList />
-        <Button
-          href={RootRoutes.newProduct}
-          onClick={(e: any) => {
-            e.preventDefault();
-            history.push(RootRoutes.newProduct);
-          }}
-          color="primary"
-          variant="contained"
-        >
-          Opprett produkt
-        </Button>
-        <Button
-          onClick={() => {
-            dispatch(logOut());
-            history.push(RootRoutes.loginUser);
-          }}
-          color="secondary"
-          variant="contained"
-        >
-          Logg ut
-        </Button>
+        <UserProductList email={email ?? ''} />
       </OwnerProfilePageWrapper>
     </>
   );

@@ -11,35 +11,33 @@ const ProductList = () => {
   const service = GetReqApiService('http://127.0.0.1:8000/product/all/');
   console.log(service);
   return (
-    <>
-      <ListContainer>
-        {service.status === LoadStates.LOADING && <div>Loading</div>}
-        {service.status === LoadStates.LOADED && (
-          <ProductUl>
-            {service.payload.map((data: any, index: number) => (
-              <li key={index}>
-                <Link
-                  to={RootRoutes.individualProductWithoutId + data.id}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <ProductContainer>
-                    <ProductImageWrapper
-                      src={data.image}
-                      alt="No product image"
-                    />
-                    <ProductTextContainer>
-                      <div>{data.title}</div>
-                      <div>{data.price + ' kr'}</div>
-                    </ProductTextContainer>
-                  </ProductContainer>
-                </Link>
-              </li>
-            ))}
-          </ProductUl>
-        )}
-        {service.status === LoadStates.ERROR && <div>Error</div>}
-      </ListContainer>
-    </>
+    <ListContainer>
+      {service.status === LoadStates.LOADING && <div>Loading</div>}
+      {service.status === LoadStates.LOADED && (
+        <ProductUl>
+          {service.payload.map((data: any, index: number) => (
+            <li key={index}>
+              <Link
+                to={RootRoutes.individualProductWithoutId + data.id}
+                style={{ textDecoration: 'none' }}
+              >
+                <ProductContainer>
+                  <ProductImageWrapper
+                    src={data.image}
+                    alt="No product image"
+                  />
+                  <ProductTextContainer>
+                    <div>{data.title}</div>
+                    <div>{data.price + ' kr'}</div>
+                  </ProductTextContainer>
+                </ProductContainer>
+              </Link>
+            </li>
+          ))}
+        </ProductUl>
+      )}
+      {service.status === LoadStates.ERROR && <div>Error</div>}
+    </ListContainer>
   );
 };
 
