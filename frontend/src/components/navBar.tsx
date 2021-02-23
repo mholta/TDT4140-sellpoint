@@ -9,10 +9,10 @@ import ProfileNavLink from './nav/profileNavLink';
 const Navbar = () => {
   return (
     <NavWrapper>
-        <Link to = { RootRoutes.homePage }>
+      <Link to={RootRoutes.homePage}>
         <ImageWrapper>
           <img src={Logo} alt="SellPoint" />
-       </ImageWrapper>
+        </ImageWrapper>
       </Link>
       <MenuList>
         <li>
@@ -71,6 +71,7 @@ const NavWrapper = styled.nav`
   right: 0;
   border-bottom: 1px solid lightgrey;
   background-color: white;
+  box-shadow: 0px 1px 3px #888888;
   padding: 1rem;
   display: flex;
   justify-content: center;
