@@ -7,6 +7,8 @@ import axios from 'axios';
 import { ProductDb } from '../../../components/api/types';
 import { useHistory } from 'react-router-dom';
 import RootRoutes from '../../RootRoutes';
+import { RootState } from '../../../redux';
+import { useSelector } from 'react-redux';
 
 /**
  * Variable holding Yup-object for form validation.
@@ -22,8 +24,9 @@ const validationSchema = yup.object({
  *
  * Sends user data with HTTP POST to backend.
  */
-const EditProductForm = ({ title, description, image, price }: ProductDb) => {
+const EditProductForm = ({id, title, description, image, email, price}: ProductDb) => {
   const history = useHistory();
+  const userState = useSelector((state: RootState) => state.user);
   const formik = useFormik({
     initialValues: {
       title: title,
@@ -38,14 +41,15 @@ const EditProductForm = ({ title, description, image, price }: ProductDb) => {
         title: data.title,
         description: data.description,
         image: data.image,
-        price: data.price,
+        email: email,
+        price: Number(data.price),
       };
       console.log('Submitted form data:', data);
       /* Performing HTTP POST to backend using axios library */
       axios
-        .post<ProductDb>('http://localhost:8000/product/', product)
+        .put<ProductDb>('http://localhost:8000/product/', {id: id, ...product})
         /* TODO: Remove response from console */
-        .then((response) => console.log('HTTP POST response', response))
+        .then((response) => console.log('HTTP PUT response', response))
         /* If POST was success, redirect to user profile view */
         .then(() => {
           history.push(RootRoutes.userView);
@@ -53,7 +57,7 @@ const EditProductForm = ({ title, description, image, price }: ProductDb) => {
         .catch((error) => {
           console.error(error);
           // TODO: Add custom alert
-          alert('Bilde må være en url.');
+          alert('Det er en feil.');
         });
     },
   });

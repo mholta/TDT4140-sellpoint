@@ -22,7 +22,7 @@ class product_detailed(generics.RetrieveAPIView):
   serializer_class = ProductSerializer
 
 # Method for adding one product by sending HTTP POST
-@api_view(['POST','DELETE'])
+@api_view(['POST','DELETE', 'PUT'])
 def product(request):
   if request.method == 'POST':
     print(request.data)
@@ -35,3 +35,15 @@ def product(request):
   elif request.method == 'DELETE':
     Product.objects.get(pk=request.data['pk']).delete()
     return HttpResponse()
+  elif request.method == 'PUT':
+    print(request.data)
+    try:
+        product = Product.objects.get(pk=request.data['id'])
+    except Product.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = ProductSerializer(product, data=request.data)
+    if serializer.is_valid():
+      print(request.data) 
+      serializer.save()
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -13,7 +13,7 @@ const EditProduct = ({ id }: EditButtonProps) => {
   const handleOnClick = () => {
     // Send a delete request with the products primary key
     axios
-      .post<any>('http://127.0.0.1:8000/product/', {
+      .put<any>('http://127.0.0.1:8000/product/', {
         data: { pk: id },
       })
       // Log the result to the console
