@@ -11,6 +11,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { RootState } from '../../redux';
 import { LoadStates } from '../../components/api/loadStates';
 import UserProductList from '../UserProfile/components/productList';
+import { Container, Section } from '../../components/generics/layoutGenerics';
 
 /**
  * Page wrapper component for User profile page.
@@ -28,8 +29,6 @@ const OwnerProfilePage = () => {
   if (userState.isLoggedIn && userState.userData.email === email)
     history.push(RootRoutes.userView);
 
-  const dispatch = useDispatch();
-  console.log(email);
   const service = GetReqApiService('http://127.0.0.1:8000/user/' + email);
   return (
     <>
@@ -44,7 +43,12 @@ const OwnerProfilePage = () => {
         )}
         {service.status === LoadStates.ERROR && <div>Error</div>}
 
-        <UserProductList email={email ?? ''} />
+        <Section>
+          <Container>
+            <h2>Produkter</h2>
+            <UserProductList email={email ?? ''} />
+          </Container>
+        </Section>
       </OwnerProfilePageWrapper>
     </>
   );

@@ -50,10 +50,17 @@ const ProductImageWrapper = styled.img`
 
 const ProductUl = styled.ul`
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+  & > li {
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 const ProductContainer = styled.div`
-  width: 500px;
+  max-width: 500px;
+  margin: 0 auto;
   height: 300px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
@@ -87,9 +94,6 @@ const ProductTextContainer = styled.div`
 
 const ListContainer = styled.div`
   position: relative;
-  left: 50vw;
-  width: 500px;
-  margin-left: -250px;
   min-width: 500px;
 `;
 
