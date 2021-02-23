@@ -9,11 +9,11 @@ import ProfileNavLink from './nav/profileNavLink';
 const Navbar = () => {
   return (
     <NavWrapper>
-      <Link to={RootRoutes.homePage}>
-        <ImageWrapper>
+      <ImageWrapper>
+        <Link to={RootRoutes.homePage}>
           <img src={Logo} alt="SellPoint" />
-        </ImageWrapper>
-      </Link>
+        </Link>
+      </ImageWrapper>
       <MenuList>
         <li>
           <LinkUnderline to={RootRoutes.registerUser}>
@@ -41,7 +41,7 @@ const ImageWrapper = styled.div`
   position: absolute;
   left: 1.4rem;
 
-  & > img {
+  & img {
     height: 100%;
   }
 `;

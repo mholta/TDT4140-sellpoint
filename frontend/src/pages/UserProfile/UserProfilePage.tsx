@@ -38,7 +38,7 @@ const UserProfilePage = () => {
               email={userState.userData.email}
               phone_number={userState.userData.phoneNumber}
             />
-            <UserProductList />
+            <UserProductList email={userState.userData.email} />
             <Button
               href={RootRoutes.newProduct}
               onClick={(e: any) => {

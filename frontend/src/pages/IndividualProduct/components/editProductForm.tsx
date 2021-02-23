@@ -24,7 +24,14 @@ const validationSchema = yup.object({
  *
  * Sends user data with HTTP POST to backend.
  */
-const EditProductForm = ({id, title, description, image, email, price}: ProductDb) => {
+const EditProductForm = ({
+  id,
+  title,
+  description,
+  image,
+  email,
+  price,
+}: ProductDb) => {
   const history = useHistory();
   const userState = useSelector((state: RootState) => state.user);
   const formik = useFormik({
@@ -47,12 +54,15 @@ const EditProductForm = ({id, title, description, image, email, price}: ProductD
       console.log('Submitted form data:', data);
       /* Performing HTTP POST to backend using axios library */
       axios
-        .put<ProductDb>('http://localhost:8000/product/', {id: id, ...product})
+        .put<ProductDb>('http://localhost:8000/product/', {
+          id: id,
+          ...product,
+        })
         /* TODO: Remove response from console */
         .then((response) => console.log('HTTP PUT response', response))
         /* If POST was success, redirect to user profile view */
         .then(() => {
-          history.push(RootRoutes.userView);
+          history.push(RootRoutes.individualProductWithoutId + id);
         })
         .catch((error) => {
           console.error(error);

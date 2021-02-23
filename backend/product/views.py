@@ -16,6 +16,15 @@ def product_list(request):
     seializer = ProductSerializer(produtcs, many = True)
     return JsonResponse(seializer.data, safe=False)
 
+# Method for getting all products by sending HTTP GET to /all
+@api_view(['POST'])
+def product_list_by_user(request):
+  print(request.data)
+  if request.method == 'POST':
+    produtcs = Product.objects.all().filter(email = request.data['email'])
+    seializer = ProductSerializer(produtcs, many = True)
+    return JsonResponse(seializer.data, safe=False)
+
 # Method for getting one product by sending HTTP GET with /<pk>
 class product_detailed(generics.RetrieveAPIView):
   queryset = Product.objects.all()

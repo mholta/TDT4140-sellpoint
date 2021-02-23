@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
-import { GetReqApiService } from '../../../components/api/getUser';
+import { GetProdByEmailApiService } from '../../../components/api/getProductsByUser';
 import { LoadStates } from '../../../components/api/loadStates';
 import RootRoutes from '../../RootRoutes';
 
 /**
  * Temporary list for viewing all products in database.
  */
-const UserProductList = () => {
-  const service = GetReqApiService('http://127.0.0.1:8000/product/all/');
+const UserProductList = ({ email }: UserProductListProps) => {
+  const service = GetProdByEmailApiService(
+    'http://127.0.0.1:8000/product/user/',
+    email
+  );
   console.log(service);
   return (
     <>
@@ -27,5 +30,9 @@ const UserProductList = () => {
     </>
   );
 };
+
+interface UserProductListProps {
+  email: string;
+}
 
 export default UserProductList;
