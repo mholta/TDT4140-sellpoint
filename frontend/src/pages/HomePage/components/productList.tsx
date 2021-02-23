@@ -21,7 +21,7 @@ const ProductList = () => {
             {service.payload.map((data: any, index: number) => (
               <li key={index}>
                 <ProductContainer>
-                  <Link to={RootRoutes.individualProduct + data.id}>
+                  <Link to={RootRoutes.individualProductWithoutId + data.id}>
                     <ProductImageWrapper
                       src={data.image}
                       alt="No product image"
@@ -47,6 +47,7 @@ const ProductImageWrapper = styled.img`
   height: 80%;
   width: 500px;
   object-fit: cover;
+  border-radius: 5px 5px 0px 0px;
 `;
 
 const ProductUl = styled.ul`
@@ -61,7 +62,7 @@ const ProductContainer = styled.div`
   margin-top: 5px;
   margin-bottom: 15px;
   box-shadow: 2px 2px 7px #888888;
-  border-radius: 3px;
+  border-radius: 5px;
 `;
 
 const ProductTextContainer = styled.div`
@@ -70,11 +71,11 @@ const ProductTextContainer = styled.div`
   font-size: 25px;
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: left;
-  box-sizing: border-box;
-  padding-top: 5px;
-
-  background-color: ;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  text-indent: 15px;
+  background-color: whitesmoke;
 `;
 
 const ListContainer = styled.div`
