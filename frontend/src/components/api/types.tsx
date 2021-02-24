@@ -9,6 +9,7 @@ export interface Profile {
  * Is used for making sure User object matches User object fetched from API
  */
 export interface User {
+  id?: string;
   first_name: string;
   last_name: string;
   email: string;
@@ -25,5 +26,5 @@ export interface ProductDb {
   description: string;
   image: string;
   price: number;
-  email?: string;
+  ownerId?: string;
 }

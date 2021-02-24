@@ -31,6 +31,7 @@ const validationSchema = yup.object({
  * Sends user data with HTTP POST to backend.
  */
 const EditUserForm = ({
+  id,
   email,
   firstName,
   lastName,
@@ -48,8 +49,9 @@ const EditUserForm = ({
     },
     validationSchema: validationSchema,
     onSubmit: (data) => {
-      /* Generate valid User object for sending to backend */
+      /* Generate user object to send */
       const user: User = {
+        id: id,
         first_name: data.firstName,
         last_name: data.lastName,
         email: data.email,
@@ -57,19 +59,15 @@ const EditUserForm = ({
         password: data.password,
       };
 
-      console.log('Submitted form data:', data);
-
       axios
-        .put<any>('http://127.0.0.1:8000/user/', {
-          org_email: email,
-          user: { ...user },
-        })
+        .put<any>('http://127.0.0.1:8000/user/', user)
         .then((response) => response.data)
         .then((response) => {
           dispatch(
             setUser({
               isLoggedIn: true,
               userData: {
+                id: response.id,
                 firstName: response.first_name,
                 lastName: response.last_name,
                 email: response.email,
@@ -151,6 +149,7 @@ const EditUserForm = ({
 };
 
 interface EditUserFormProps {
+  id: string;
   firstName: string;
   lastName: string;
   phoneNumber: string;

@@ -7,7 +7,7 @@ import { LoadStates, Service } from './loadStates';
  *
  * @param url
  */
-export const GetProdByEmailApiService = (url: string, email: string) => {
+export const GetProdByUserIdApiService = (url: string, ownerId: string) => {
   const [result, setResult] = useState<Service<any>>({
     status: LoadStates.LOADING,
   });
@@ -15,7 +15,7 @@ export const GetProdByEmailApiService = (url: string, email: string) => {
 
   useEffect(() => {
     axios
-      .post<any>(url, { email: email })
+      .post<any>(url, { ownerId: ownerId })
       .then((response) => response.data)
       .then((response) =>
         setResult({ status: LoadStates.LOADED, payload: response })

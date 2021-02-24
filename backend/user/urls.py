@@ -1,10 +1,19 @@
 from django.urls import path
-from .views import user_view, UserDetailedView, user_list,user
-
+from .views import user_view, user_by_id, user_list, all_users
 
 urlpatterns = [
+
+    # POST - log in
+    # DELETE - delete user
+    # PUT - update user
     path('', user_view),
-    path('<pk>', UserDetailedView.as_view()),
+
+    # GET - user by id
+    path('<pk>', user_by_id.as_view()),
+
+    # POST - create new user
     path('post/', user_list),
-    path('all/', user.as_view())
+
+    # GET - all users
+    path('all/', all_users.as_view())
 ]

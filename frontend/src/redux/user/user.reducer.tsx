@@ -31,6 +31,7 @@ export interface UserNotLoggedIn {
 }
 
 export interface UserStateData {
+  id: string;
   firstName: string;
   lastName: string;
   email: string;

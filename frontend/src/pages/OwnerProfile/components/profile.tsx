@@ -7,6 +7,7 @@ import {
   Section,
 } from '../../../components/generics/layoutGenerics';
 import { LinkUnderline } from '../../../components/generics/links';
+import { BackgroundLayer } from '../../UserProfile/components/profile';
 
 /**
  * Component for the user info part of UserProfilePage
@@ -51,31 +52,6 @@ const ProfileSection = ({
     </Section>
   );
 };
-
-/**
- * Background component
- */
-const BackgroundLayer = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: -10rem;
-  left: 0;
-  z-index: -1;
-
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: -5rem;
-    left: -3rem;
-    width: 200%;
-    height: calc(100% - 4rem);
-    transform: rotateZ(-4deg);
-    background-color: #d9afd9;
-    background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
-  }
-`;
 
 /**
  * Wrapper for holding name, email and phone number.

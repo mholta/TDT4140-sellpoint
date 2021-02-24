@@ -55,7 +55,7 @@ const ProfileSection = ({
 /**
  * Background component
  */
-const BackgroundLayer = styled.div`
+export const BackgroundLayer = styled.div`
   position: absolute;
   top: 0;
   right: 0;
@@ -67,10 +67,11 @@ const BackgroundLayer = styled.div`
     content: '';
     position: absolute;
     z-index: -1;
-    top: -5rem;
+    top: -10rem;
     left: -3rem;
+    bottom: 10rem;
     width: 200%;
-    height: calc(100% - 4rem);
+    //height: calc(100% - 4rem);
     transform: rotateZ(-4deg);
     background-color: #d9afd9;
     background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);

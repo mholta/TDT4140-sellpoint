@@ -20,5 +20,5 @@ class Product(models.Model):
   image = models.CharField( max_length=200, default="")
   price = models.FloatField( default=0)
   created_at = models.DateTimeField( auto_now_add=True)
-  email = models.name = models.ForeignKey(User, blank='True', on_delete=models.CASCADE)
+  ownerId = models.name = models.ForeignKey(User, blank='True', on_delete=models.CASCADE)
   

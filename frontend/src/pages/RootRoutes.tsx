@@ -5,7 +5,7 @@ export enum RootRoutes {
   newProduct = '/products/new',
   individualProduct = '/product/:id',
   individualProductWithoutId = '/product/',
-  ownerView = '/user/profile/:email' /* Profile to product owner */,
+  ownerView = '/user/profile/:id' /* Profile to product owner */,
   ownerViewWithoutId = '/user/profile/' /* Profile to product owner */,
   homePage = '',
 }

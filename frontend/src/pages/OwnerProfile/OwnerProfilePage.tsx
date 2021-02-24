@@ -21,15 +21,18 @@ import { Container, Section } from '../../components/generics/layoutGenerics';
  * @returns User profile page
  */
 const OwnerProfilePage = () => {
-  let { email } = useParams<ParamTypes>(); /* Henter det som er bak url-en */
+  let { id } = useParams<ParamTypes>(); /* Henter det som er bak url-en */
   // TODO: Issue with mounting
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
 
-  if (userState.isLoggedIn && userState.userData.email === email)
+  console.log(id);
+  console.log(userState.isLoggedIn ? userState.userData.id : '');
+
+  if (userState.isLoggedIn && userState.userData.id.toString() === id)
     history.push(RootRoutes.userView);
 
-  const service = GetReqApiService('http://127.0.0.1:8000/user/' + email);
+  const service = GetReqApiService('http://127.0.0.1:8000/user/' + id);
   return (
     <>
       <Navbar />
@@ -38,28 +41,26 @@ const OwnerProfilePage = () => {
         {service.status === LoadStates.LOADED && (
           <>
             <ProfileSection {...service.payload} />{' '}
+            <Section>
+              <Container>
+                <h2>Produkter</h2>
+                <UserProductList ownerId={id ?? ''} />
+              </Container>
+            </Section>
             {/* Everything (...) in payload is sent to ProductSection */}
           </>
         )}
         {service.status === LoadStates.ERROR && <div>Error</div>}
-
-        <Section>
-          <Container>
-            <h2>Produkter</h2>
-            <UserProductList email={email ?? ''} />
-          </Container>
-        </Section>
       </OwnerProfilePageWrapper>
     </>
   );
 };
-
 const OwnerProfilePageWrapper = styled.div`
   position: relative;
 `;
 
 interface ParamTypes {
-  email: string | undefined;
+  id: string | undefined;
 }
 
 export default OwnerProfilePage;
