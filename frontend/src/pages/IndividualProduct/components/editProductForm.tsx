@@ -29,7 +29,7 @@ const EditProductForm = ({
   title,
   description,
   image,
-  email,
+  ownerId,
   price,
 }: ProductDb) => {
   const history = useHistory();
@@ -48,7 +48,7 @@ const EditProductForm = ({
         title: data.title,
         description: data.description,
         image: data.image,
-        email: email,
+        ownerId: ownerId,
         price: Number(data.price),
       };
       console.log('Submitted form data:', data);

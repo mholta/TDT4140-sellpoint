@@ -8,7 +8,6 @@ import {
 } from '../../../components/generics/layoutGenerics';
 import DeleteProduct from './deleteProductButton';
 import OwnerDetails from './ownerDetails';
-import EditProduct from './editProductButton';
 import EditProductForm from './editProductForm';
 import { RootState } from '../../../redux';
 import { useSelector } from 'react-redux';
@@ -18,7 +17,7 @@ const ProductSection = ({
   description = '',
   price = 0,
   image = '',
-  email = '',
+  ownerId = '',
   id,
 }: ProductProps) => {
   const userState = useSelector((state: RootState) => state.user);
@@ -34,7 +33,7 @@ const ProductSection = ({
             <h1>{title}</h1>
             <div>{price} kr</div>
             <p>{description}</p>
-            <OwnerDetails email={email} />
+            <OwnerDetails id={ownerId} />
           </ProfileDataWrapper>
           <Image
             src={image ?? defaultImageUrl} // add 'image ?? ' in front of this to provide given image url it set, else fall back to default image
@@ -42,7 +41,8 @@ const ProductSection = ({
             aspectRatio="4:3"
           />
         </ProfileInfoGrid>
-        {userState.isLoggedIn && userState.userData.email === email && (
+        {/* If user is logged in and user is owner (ids matches) */}
+        {userState.isLoggedIn && userState.userData.id === ownerId && (
           <>
             <DeleteProduct id={id} />
             <EditProductForm
@@ -50,7 +50,7 @@ const ProductSection = ({
               description={description}
               price={price}
               image={image}
-              email={email}
+              ownerId={ownerId}
               id={id}
             />
           </>

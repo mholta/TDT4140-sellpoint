@@ -41,7 +41,7 @@ const NewProductForm = () => {
         title: data.title,
         description: data.description,
         image: data.image,
-        email: userState.isLoggedIn ? userState.userData.email : '',
+        ownerId: userState.isLoggedIn ? userState.userData.id : '',
         price: Number(data.price),
       };
 

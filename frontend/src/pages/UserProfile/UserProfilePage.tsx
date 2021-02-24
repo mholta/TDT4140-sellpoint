@@ -39,7 +39,7 @@ const UserProfilePage = () => {
               email={userState.userData.email}
               phone_number={userState.userData.phoneNumber}
             />
-            <UserProductList email={userState.userData.email} />
+            <UserProductList ownerId={userState.userData.id} />
             <Section>
               <Container>
                 <Button
@@ -64,6 +64,7 @@ const UserProfilePage = () => {
                   Logg ut
                 </Button>
                 <EditUserForm
+                  id={userState.userData.id}
                   firstName={userState.userData.firstName}
                   lastName={userState.userData.lastName}
                   email={userState.userData.email}

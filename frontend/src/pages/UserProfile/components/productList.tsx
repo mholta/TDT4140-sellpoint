@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
-import { GetProdByEmailApiService } from '../../../components/api/getProductsByUser';
+import { GetProdByUserIdApiService } from '../../../components/api/getProductsByUser';
 import { LoadStates } from '../../../components/api/loadStates';
 import RootRoutes from '../../RootRoutes';
 
 /**
  * Temporary list for viewing all products in database.
  */
-const UserProductList = ({ email }: UserProductListProps) => {
-  const service = GetProdByEmailApiService(
+const UserProductList = ({ ownerId }: UserProductListProps) => {
+  const service = GetProdByUserIdApiService(
     'http://127.0.0.1:8000/product/user/',
-    email
+    ownerId
   );
   console.log(service);
   return (
@@ -32,7 +32,7 @@ const UserProductList = ({ email }: UserProductListProps) => {
 };
 
 interface UserProductListProps {
-  email: string;
+  ownerId: string;
 }
 
 export default UserProductList;

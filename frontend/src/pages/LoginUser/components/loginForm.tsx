@@ -44,6 +44,7 @@ const LoginForm = () => {
             setUser({
               isLoggedIn: true,
               userData: {
+                id: response.id,
                 firstName: response.first_name,
                 lastName: response.last_name,
                 email: response.email,

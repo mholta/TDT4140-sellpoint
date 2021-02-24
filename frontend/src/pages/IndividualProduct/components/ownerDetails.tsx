@@ -10,16 +10,16 @@ import RootRoutes from '../../RootRoutes';
  *
  * @returns User profile page
  */
-const OwnerDetails = ({ email }: OwnerProps) => {
+const OwnerDetails = ({ id }: OwnerProps) => {
   /* Use api service for getting user and showing different states */
-  const service = GetReqApiService('http://127.0.0.1:8000/user/' + email);
+  const service = GetReqApiService('http://127.0.0.1:8000/user/' + id);
   console.log(service);
 
   return (
     <div>
       {service.status === LoadStates.LOADING && <div>Loading</div>}
       {service.status === LoadStates.LOADED && (
-        <Link to={RootRoutes.ownerViewWithoutId + service.payload.email}>
+        <Link to={RootRoutes.ownerViewWithoutId + service.payload.id}>
           {service.payload.first_name + ' ' + service.payload.last_name}
         </Link>
       )}
@@ -29,6 +29,6 @@ const OwnerDetails = ({ email }: OwnerProps) => {
 };
 
 interface OwnerProps {
-  email: string;
+  id: string;
 }
 export default OwnerDetails;
