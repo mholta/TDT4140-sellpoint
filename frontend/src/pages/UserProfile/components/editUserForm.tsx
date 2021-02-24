@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import RootRoutes from '../../RootRoutes';
 import { setUser } from '../../../redux/user/user.actions';
 import { useDispatch } from 'react-redux';
-import DeleteUser from './deleteProductButton';
+import DeleteUser from './deleteUserButton';
 
 /**
  * Variable holding Yup-object for form validation.
@@ -141,7 +141,7 @@ const EditUserForm = ({
           helperText={formik.touched.password && formik.errors.password}
         />
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Registrer
+          Lagre endringer
         </Button>
       </form>
 
