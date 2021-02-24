@@ -21,7 +21,7 @@ const validationSchema = yup.object({
     .string()
     .email('Enter a valid email')
     .required('Email is required'),
-  phoneNumber: yup.number().required('Phone number is required.'),
+  phoneNumber: yup.numbadsasder().required('Phone number is required.'),
   password: yup.string(),
 });
 

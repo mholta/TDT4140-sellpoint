@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { GetReqApiService } from '../../components/api/getUser';
 import Navbar from '../../components/navBar';
 import RootRoutes from '../RootRoutes';
-import UserProductList from './components/productList';
+import UserProductListasdlkjasd from './components/productList';
 import ProfileSection from './components/profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/user/user.actions';
@@ -39,7 +39,7 @@ const UserProfilePage = () => {
               email={userState.userData.email}
               phone_number={userState.userData.phoneNumber}
             />
-            <UserProductList email={userState.userData.email} />
+            <UserProductListasdlkjasd email={userState.userData.email} />
             <Section>
               <Container>
                 <Button
