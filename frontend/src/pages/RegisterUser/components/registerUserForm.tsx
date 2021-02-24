@@ -46,7 +46,7 @@ const RegisterForm = () => {
       const user: User = {
         first_name: data.firstName,
         last_name: data.lastName,
-        email: data.email,
+        email: data.email.toLowerCase(),
         phone_number: data.phoneNumber,
         password: data.password,
       };
