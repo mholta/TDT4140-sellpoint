@@ -32,7 +32,7 @@ const DeleteUser = ({ email }: DeleteButtonProps) => {
   };
   return (
     <Button onClick={handleOnClick} color="secondary" variant="contained">
-      Slett produkt
+      Slett bruker
     </Button>
   );
 };

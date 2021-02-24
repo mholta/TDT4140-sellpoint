@@ -34,7 +34,6 @@ const ProductSection = ({
             <h1>{title}</h1>
             <div>{price} kr</div>
             <p>{description}</p>
-            <div>{price}</div>
             <OwnerDetails email={email} />
           </ProfileDataWrapper>
           <Image
