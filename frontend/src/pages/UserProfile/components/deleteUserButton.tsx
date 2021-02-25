@@ -6,18 +6,18 @@ import RootRoutes from '../../RootRoutes';
 import { useDispatch } from 'react-redux';
 
 /**
- * Button that deletes a product with given id
- * @param email of the product
+ * Button that deletes a user with given id
+ * @param id of the user
  */
-const DeleteUser = ({ email }: DeleteButtonProps) => {
+const DeleteUser = ({ id }: DeleteButtonProps) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleOnClick = () => {
-    // Send a delete request with the products primary key
+    // Send a delete request with the users primary key
     axios
       .delete<any>('http://127.0.0.1:8000/user/', {
-        data: { pk: email },
+        data: { pk: id },
       })
       // Log the result to the console
       .then((response) => console.log(response))
@@ -38,7 +38,7 @@ const DeleteUser = ({ email }: DeleteButtonProps) => {
 };
 
 interface DeleteButtonProps {
-  email: string;
+  id: string;
 }
 
 export default DeleteUser;
