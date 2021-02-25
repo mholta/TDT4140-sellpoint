@@ -143,7 +143,7 @@ const EditUserForm = ({
         </Button>
       </form>
 
-      <DeleteUser email={email} />
+      <DeleteUser id={id} />
     </div>
   );
 };
