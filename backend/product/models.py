@@ -22,6 +22,7 @@ class Product(models.Model):
   image = models.CharField( max_length=200, default="")
   price = models.FloatField( default=0)
   ownerId = models.name = models.ForeignKey(User, blank='True', on_delete=models.CASCADE)
+  locationId = models.ForeignKey(Location, blank='True', on_delete=models.CASCADE) 
 
   # Default category is NULL, which translates to "Annet" in frontend
   categoryId = models.name = models.ForeignKey(Category, blank='True', null = True, on_delete=models.SET_NULL)
