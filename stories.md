@@ -14,6 +14,7 @@ Issues:
 - #50
 
 Testkrav:
+
 [] Når man oppretter et produkt, skal man kunne velge en forhåndsdefinert kategori. 
 
 [] Man kan opprette et produkt innen en kategori, og finne produktet igjen under filtrering på denne kategorien 
