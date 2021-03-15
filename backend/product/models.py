@@ -2,6 +2,7 @@ from django.db import models
 from user.models import User
 import string
 import random
+from category.models import Category
 
 def generate_unique_product_code():
   length= 6
@@ -14,6 +15,7 @@ def generate_unique_product_code():
   return code
 
 # Create your models here.
+
 class Product(models.Model):
   title = models.CharField( max_length=16, default="", unique=False)
   description = models.TextField(  default="", unique=False)
@@ -21,4 +23,9 @@ class Product(models.Model):
   price = models.FloatField( default=0)
   created_at = models.DateTimeField( auto_now_add=True)
   ownerId = models.name = models.ForeignKey(User, blank='True', on_delete=models.CASCADE)
+
+  # Default category is NULL, which translates to "Annet" in frontend
+  categoryId = models.name = models.ForeignKey(Category, blank='True', null = True, on_delete=models.SET_NULL)
+
+
   
