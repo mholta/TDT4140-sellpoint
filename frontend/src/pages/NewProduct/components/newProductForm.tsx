@@ -9,6 +9,9 @@ import { useHistory } from 'react-router-dom';
 import RootRoutes from '../../RootRoutes';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import { FormControl, InputLabel } from '@material-ui/core';
 
 /**
  * Variable holding Yup-object for form validation.
@@ -33,6 +36,7 @@ const NewProductForm = () => {
       price: '',
       description: '',
       image: '',
+      category: '',
     },
     validationSchema: validationSchema,
     onSubmit: (data) => {
@@ -43,6 +47,7 @@ const NewProductForm = () => {
         image: data.image,
         ownerId: userState.isLoggedIn ? userState.userData.id : '',
         price: Number(data.price),
+        /*category: data.category,*/
       };
 
       console.log('Submitted form data:', data);
@@ -76,6 +81,16 @@ const NewProductForm = () => {
           error={formik.touched.title && Boolean(formik.errors.title)}
           helperText={formik.touched.title && formik.errors.title}
         />
+        <FormControl fullWidth>
+          <InputLabel id="category">Kategori</InputLabel>
+          <Select id="category" name="category" onChange={formik.handleChange}>
+            <MenuItem value={10}>Bil</MenuItem>
+            <MenuItem value={20}>Klær</MenuItem>
+            <MenuItem value={30}>Hjem</MenuItem>
+            <MenuItem value={30}>Hage</MenuItem>
+            <MenuItem value={30}>Elektronikk</MenuItem>
+          </Select>
+        </FormControl>
         <TextField
           fullWidth
           id="price"
