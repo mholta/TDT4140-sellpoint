@@ -1,8 +1,6 @@
 ```
-Product {
-  name: string,
-  price: float,
-  owner: User,
+Category {
+  title: string,
 }
 ```
 
