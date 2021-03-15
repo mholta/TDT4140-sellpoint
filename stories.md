@@ -14,6 +14,7 @@ Issues:
 - #50
 
 Testkrav:
+
 [] Når man oppretter et produkt, skal man kunne velge en forhåndsdefinert kategori. 
 
 [] Man kan opprette et produkt innen en kategori, og finne produktet igjen under filtrering på denne kategorien 
@@ -28,6 +29,7 @@ Issues:
 - #53
 
 Testkrav:
+
 [] Bruker må velge én kategori for produktet de selv legger ut 
 
 [] Man kan se hvilken kategori et produkt har på produktsiden til produktet 
@@ -49,6 +51,7 @@ Issues:
 - #55
 
 Testkrav:
+
 [] Fire produkter skal opprettes, med priser 500, 300, 200, 500 (altså to med samme pris). 
 
 [] Man skal kunne velge sorteringsrekkefølge på forsiden. 
@@ -64,6 +67,7 @@ Issues:
 - #57
 
 Testkrav: 
+
 [] Annonser skal ha en favorittknapp knyttet til seg (både på forsiden og inne på et produkt). 
 
 [] Inne på profil skal det være en oversikt over likte annonser. Trykker man på favorittknappen skal det tilhørende produktet vises her. 
