@@ -1,4 +1,5 @@
 from django.db import models
+from location.models import Location
 
 # Create your models here.
 class User(models.Model):
@@ -8,4 +9,6 @@ class User(models.Model):
     last_name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=8)
     password = models.CharField(max_length=200)
-    
+
+    latitude = models.FloatField( null=True)
+    longitude = models.FloatField( null=True)

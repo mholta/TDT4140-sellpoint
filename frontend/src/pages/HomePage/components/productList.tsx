@@ -2,6 +2,7 @@ import { LoadStates, Service } from '../../../components/api/loadStates';
 import ProductGrid from '../../../components/product/productGrid';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { DistanceObject } from './productStateWrapper';
 
 /**
  * Interface for defining required props when using the component.
@@ -9,6 +10,7 @@ import axios from 'axios';
 interface ProductListProps {
   currentCategoryId: number | null;
   currentSortMethod: string | null;
+  currentDistanceObject: DistanceObject | null;
 }
 
 /**
@@ -21,6 +23,7 @@ interface ProductListProps {
 const ProductList = ({
   currentCategoryId,
   currentSortMethod,
+  currentDistanceObject,
 }: ProductListProps) => {
   const url = 'http://127.0.0.1:8000/product/fs/';
   const [service, setResult] = useState<Service<any>>({
@@ -31,7 +34,10 @@ const ProductList = ({
   // currentCategoryId og -sortMethod updates
   useEffect(() => {
     axios
-      .post<any>(url, { categoryId: currentCategoryId })
+      .post<any>(url, {
+        categoryId: currentCategoryId,
+        distance_object: currentDistanceObject,
+      })
       .then((response) => response.data)
       .then((response) =>
         setResult({ status: LoadStates.LOADED, payload: response })
@@ -40,7 +46,7 @@ const ProductList = ({
         setResult({ status: LoadStates.ERROR, error });
         console.error('Failed to get user from db -' + error.message);
       });
-  }, [url, currentCategoryId, currentSortMethod]);
+  }, [url, currentCategoryId, currentSortMethod, currentDistanceObject]);
 
   return (
     <>

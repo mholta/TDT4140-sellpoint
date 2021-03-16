@@ -55,7 +55,6 @@ const ImageWrapper = styled.div<ImageWrapperProps>`
       paddingBottom =
         (Math.round((aspectRatioH / aspectRatioW) * 10) / 10) * 100;
     }
-    console.log(paddingBottom);
     return `
     ${aspectRatio ? 'position: relative;' : ''};
     ${aspectRatio ? 'padding-bottom: ' + paddingBottom + '%;' : ''}
