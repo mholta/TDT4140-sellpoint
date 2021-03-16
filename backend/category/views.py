@@ -10,6 +10,6 @@ from rest_framework.decorators import api_view
 @api_view(['GET'])
 def category_list(request):
   if request.method == 'GET':
-    produtcs = Category.objects.all()
-    seializer = CategorySerializer(produtcs, many = True)
+    products = Category.objects.all()
+    seializer = CategorySerializer(products, many = True)
     return JsonResponse(seializer.data, safe=False)
