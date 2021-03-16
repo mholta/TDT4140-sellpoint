@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import Button from '@material-ui/core/Button';
@@ -7,6 +7,9 @@ import axios from 'axios';
 import { User } from '../../../components/api/types';
 import { useHistory } from 'react-router-dom';
 import RootRoutes from '../../RootRoutes';
+import GeoCode from 'react-geocode';
+import { fullWhite } from 'material-ui/styles/colors';
+import LocationInput, { LocationObject } from './locationInput';
 
 /**
  * Variable holding Yup-object for form validation.
@@ -31,6 +34,10 @@ const validationSchema = yup.object({
  * Sends user data with HTTP POST to backend.
  */
 const RegisterForm = () => {
+  const [locationObject, setLocationObject] = useState<LocationObject | null>(
+    null
+  );
+
   const history = useHistory();
   const formik = useFormik({
     initialValues: {
@@ -43,36 +50,48 @@ const RegisterForm = () => {
     validationSchema: validationSchema,
     onSubmit: (data) => {
       /* Generate valid User object for sending to backend */
-      const user: User = {
-        first_name: data.firstName,
-        last_name: data.lastName,
-        email: data.email.toLowerCase(),
-        phone_number: data.phoneNumber,
-        password: data.password,
-      };
+      if (locationObject) {
+        const user: User = {
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email.toLowerCase(),
+          phone_number: data.phoneNumber,
+          password: data.password,
+          latitude: locationObject.latitude,
+          longitude: locationObject.longitude,
+        };
 
-      console.log('Submitted form data:', data);
+        console.log('Submitted form data:', data);
 
-      /* Performing HTTP POST to backend using axios library */
-      axios
-        .post<User>('http://localhost:8000/user/post/', user)
-        /* TODO: Remove response from console */
-        .then((response) => console.log('HTTP POST response', response))
-        /* If POST was success, redirect to login page */
-        .then(() => {
-          history.push(RootRoutes.loginUser);
-        })
-        .catch((error) => {
-          console.log(error);
-          // TODO: Add custom alert
-          alert(
-            'Det eksisterer allerede en bruker med epostadresse "' +
-              data.email +
-              '".\nPrøv å logg inn heller.'
-          );
-        });
+        /* Performing HTTP POST to backend using axios library */
+        axios
+          .post<User>('http://localhost:8000/user/post/', user)
+          /* TODO: Remove response from console */
+          .then((response) => console.log('HTTP POST response', response))
+          /* If POST was success, redirect to login page */
+          .then(() => {
+            history.push(RootRoutes.loginUser);
+          })
+          .catch((error) => {
+            console.log(error);
+            // TODO: Add custom alert
+            alert(
+              'Det eksisterer allerede en bruker med epostadresse "' +
+                data.email +
+                '".\nPrøv å logg inn heller.'
+            );
+          });
+      } else {
+      }
     },
   });
+
+  // Handle location lat long update
+  const handleLocationChange = (event: any) => {
+    setLocationObject(event);
+    console.log(event);
+  };
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit}>
@@ -118,6 +137,10 @@ const RegisterForm = () => {
           }
           helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
         />
+        <LocationInput
+          setLocationObjectCallback={handleLocationChange}
+          fullWidth
+        />
         <TextField
           fullWidth
           id="password"
@@ -138,73 +161,3 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
-
-/*import { Field, Formik } from 'formik';
-import React from 'react';
-import { InputField } from '../../../components/fields/InputField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-  }),
-);
-
-function RegisterForm() {
-  const classes = useStyles();
-
-  return (
-    <Formik
-      onSubmit={(data) => {
-        console.log(data);
-      }}
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        password: '',
-      }}
-    >
-      {({ handleSubmit }) => (
-        <form className={classes.root} onSubmit={ handleSubmit } >
-          <Field
-            name="firstName"
-            placeholder="Fornavn"
-            component={InputField}
-          />
-          <Field
-            name="lastName"
-            placeholder="Etternavn"
-            component={InputField}
-          />
-          <Field
-            name="email"
-            placeholder="E-postadresse"
-            component={InputField}
-          />
-          <Field
-            name="phoneNumber"
-            placeholder="Mobilnummer"
-            component={InputField}
-          />
-          <Field
-            name="password"
-            placeholder="Passord"
-            type="password"
-            component={InputField}
-          />
-          <button type="submit">Registrer</button>
-        </form>
-      )}
-    </Formik>
-  );
-}
-
-export default RegisterForm;
-*/

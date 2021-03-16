@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GetReqApiService } from '../../../components/api/getUser';
 import { LoadStates } from '../../../components/api/loadStates';
@@ -19,16 +19,19 @@ interface CategoriesProps {
  */
 const Categories = ({ setCategoryCallback }: CategoriesProps) => {
   const service = GetReqApiService('http://127.0.0.1:8000/category/all/');
+  const [currentCategory, setCurrentCategory] = useState<number | null>(null);
 
   return (
     <>
-      {service.status === LoadStates.LOADING && <div>Loading</div>}
+      {service.status === LoadStates.LOADING && <div></div>}
       {service.status === LoadStates.LOADED && (
         <CategoriesList>
           <li key={'showall'}>
             <Button
               variant="contained"
+              color={currentCategory ? 'default' : 'primary'}
               onClick={() => {
+                setCurrentCategory(null);
                 setCategoryCallback(null);
               }}
             >
@@ -39,7 +42,9 @@ const Categories = ({ setCategoryCallback }: CategoriesProps) => {
             <li key={'category' + index}>
               <Button
                 variant="contained"
+                color={currentCategory === data.id ? 'primary' : 'default'}
                 onClick={() => {
+                  setCurrentCategory(data.id);
                   setCategoryCallback(data.id);
                 }}
               >

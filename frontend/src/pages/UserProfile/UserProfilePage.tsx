@@ -69,6 +69,8 @@ const UserProfilePage = () => {
                   lastName={userState.userData.lastName}
                   email={userState.userData.email}
                   phoneNumber={userState.userData.phoneNumber}
+                  latitude={userState.userData.latitude}
+                  longitude={userState.userData.longitude}
                 />
               </Container>
             </Section>

@@ -3,6 +3,7 @@ from user.models import User
 import string
 import random
 from category.models import Category
+from django.db.models import Lookup
 
 def generate_unique_product_code():
   length= 6
@@ -26,5 +27,5 @@ class Product(models.Model):
   # Default category is NULL, which translates to "Annet" in frontend
   categoryId = models.name = models.ForeignKey(Category, blank='True', null = True, on_delete=models.SET_NULL)
 
-
-  
+  latitude = models.FloatField( null=True)
+  longitude = models.FloatField( null=True)

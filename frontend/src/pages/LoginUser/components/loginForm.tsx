@@ -49,6 +49,8 @@ const LoginForm = () => {
                 lastName: response.last_name,
                 email: response.email,
                 phoneNumber: response.phone_number,
+                latitude: response.latitude,
+                longitude: response.longitude,
               },
             })
           );

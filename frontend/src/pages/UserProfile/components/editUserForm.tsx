@@ -11,6 +11,16 @@ import { setUser } from '../../../redux/user/user.actions';
 import { useDispatch } from 'react-redux';
 import DeleteUser from './deleteUserButton';
 
+interface EditUserFormProps {
+  id: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  latitude: number;
+  longitude: number;
+}
+
 /**
  * Variable holding Yup-object for form validation.
  */
@@ -36,6 +46,8 @@ const EditUserForm = ({
   firstName,
   lastName,
   phoneNumber,
+  latitude,
+  longitude,
 }: EditUserFormProps) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -57,6 +69,8 @@ const EditUserForm = ({
         email: data.email,
         phone_number: data.phoneNumber,
         password: data.password,
+        latitude: latitude,
+        longitude: longitude,
       };
 
       axios
@@ -72,6 +86,8 @@ const EditUserForm = ({
                 lastName: response.last_name,
                 email: response.email,
                 phoneNumber: response.phone_number,
+                latitude: response.latitude,
+                longitude: response.longitude,
               },
             })
           );
@@ -147,14 +163,6 @@ const EditUserForm = ({
     </div>
   );
 };
-
-interface EditUserFormProps {
-  id: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
-}
 
 export default EditUserForm;
 
