@@ -16,6 +16,10 @@ const ProductStateWrapper = () => {
   const [currentCategoryId, setCurrentCategoryId] = useState<number | null>(
     null
   );
+  const [
+    currentDistanceObject,
+    setCurrentDistanceObject,
+  ] = useState<DistanceObject | null>(null);
   const [currentSortMethod, setCurrentSortMethod] = useState<string | null>(
     null
   );
@@ -24,13 +28,21 @@ const ProductStateWrapper = () => {
       <FilterMenu
         setCategoryCallback={setCurrentCategoryId}
         setSortMethodCallback={setCurrentSortMethod}
+        setDistanceObjectCallback={setCurrentDistanceObject}
       />
       <ProductList
         currentCategoryId={currentCategoryId}
         currentSortMethod={currentSortMethod}
+        currentDistanceObject={currentDistanceObject}
       />
     </>
   );
 };
+
+export interface DistanceObject {
+  latitude: number;
+  longitude: number;
+  max_distance: number;
+}
 
 export default ProductStateWrapper;

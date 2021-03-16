@@ -31,8 +31,6 @@ const LoginForm = () => {
     validationSchema: validationSchema,
 
     onSubmit: (data) => {
-      console.log(data);
-
       axios
         .post<any>('http://127.0.0.1:8000/user/', {
           email: data.email.toLowerCase(),
@@ -49,6 +47,8 @@ const LoginForm = () => {
                 lastName: response.last_name,
                 email: response.email,
                 phoneNumber: response.phone_number,
+                latitude: response.latitude,
+                longitude: response.longitude,
               },
             })
           );
@@ -93,46 +93,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-/*
-import React from 'react';
-import { Field, Form, Formik } from 'formik';
-import { InputField } from '../../../components/fields/InputField';
-
-
-
-
- function LoginForm() {
-  return (
-    
-    <Formik
-      onSubmit={(data) => {
-        console.log(data);
-      }}
-      initialValues={{
-        email: '',
-        password: '',
-      }}
-    >
-      {({ handleSubmit }) => (
-        <Form onSubmit = { handleSubmit } >
-          <Field
-            name="email"
-            placeholder="E-postadresse"
-            component={ InputField }
-          />
-          <Field
-            name="password"
-            placeholder="Passord"
-            type="password"
-            component={InputField}
-          />
-          <button type="submit">Logg inn</button>
-        </Form>
-      )}
-    </Formik>
-  );
-}
-
-export default LoginForm;
-*/

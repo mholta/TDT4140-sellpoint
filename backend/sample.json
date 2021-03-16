@@ -7,7 +7,9 @@
       "first_name": "Ola",
       "last_name": "Nordmann",
       "phone_number": "12345678",
-      "password": "Password"
+      "password": "Password",
+      "latitude": 63.4305149,
+      "longitude": 10.3950528
     }
   },
   {
@@ -18,7 +20,9 @@
       "first_name": "Kari",
       "last_name": "Nordmann",
       "phone_number": "12345678",
-      "password": "Password"
+      "password": "Password",
+      "latitude": 63.4669931,
+      "longitude": 10.91169
     }
   },
   { "model": "category.Category", "pk": 50, "fields": { "title": "Annet" } },

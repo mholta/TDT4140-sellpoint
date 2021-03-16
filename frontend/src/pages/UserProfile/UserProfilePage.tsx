@@ -26,6 +26,7 @@ const UserProfilePage = () => {
   if (!userState.isLoggedIn) history.push(RootRoutes.loginUser);
 
   const dispatch = useDispatch();
+
   return (
     <>
       {userState.isLoggedIn && (
@@ -37,6 +38,8 @@ const UserProfilePage = () => {
               last_name={userState.userData.lastName}
               email={userState.userData.email}
               phone_number={userState.userData.phoneNumber}
+              latitude={userState.userData.latitude}
+              longitude={userState.userData.longitude}
             />
             <Section>
               <Container>
@@ -69,6 +72,8 @@ const UserProfilePage = () => {
                   lastName={userState.userData.lastName}
                   email={userState.userData.email}
                   phoneNumber={userState.userData.phoneNumber}
+                  latitude={userState.userData.latitude}
+                  longitude={userState.userData.longitude}
                 />
               </Container>
             </Section>

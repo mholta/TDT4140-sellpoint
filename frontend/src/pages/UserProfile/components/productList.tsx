@@ -10,7 +10,6 @@ const UserProductList = ({ ownerId }: UserProductListProps) => {
     'http://127.0.0.1:8000/product/user/',
     ownerId
   );
-  console.log(service);
   return (
     <>
       {service.status === LoadStates.LOADING && <div>Loading</div>}

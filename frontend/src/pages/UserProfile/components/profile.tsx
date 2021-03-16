@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { GetLocationFromLatLng } from '../../../components/api/location';
 import { User } from '../../../components/api/types';
 import Image from '../../../components/generics/image';
 import {
@@ -23,11 +24,17 @@ const ProfileSection = ({
   last_name,
   email,
   phone_number,
-  location = 'Trondheim, Norge',
+  latitude,
+  longitude,
 }: ProfileProps) => {
   /* Fall back to default image if no image url is passed in */
   const defaultImageUrl =
     'https://images.unsplash.com/photo-1492546662075-aabebf46dee2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80';
+
+  const [location, setLocation] = useState<string | null>(null);
+  GetLocationFromLatLng(latitude, longitude).then((response) =>
+    setLocation(response)
+  );
 
   return (
     <Section>
@@ -106,7 +113,7 @@ const ProfileInfoGrid = styled.div`
   column-gap: 2rem;
 `;
 
-export interface ProfileProps extends Partial<User> {
+export interface ProfileProps extends User {
   location?: string;
 }
 

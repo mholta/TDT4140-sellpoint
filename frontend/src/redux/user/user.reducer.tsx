@@ -36,4 +36,6 @@ export interface UserStateData {
   lastName: string;
   email: string;
   phoneNumber: string;
+  latitude: number;
+  longitude: number;
 }

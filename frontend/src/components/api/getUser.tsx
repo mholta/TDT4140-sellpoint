@@ -11,7 +11,6 @@ export const GetReqApiService = (url: string) => {
   const [result, setResult] = useState<Service<any>>({
     status: LoadStates.LOADING,
   });
-  console.log(result);
 
   useEffect(() => {
     axios

@@ -3,7 +3,6 @@ import Navbar from '../../components/navBar';
 import NewProductForm from './components/newProductForm';
 
 const NewProductPage = () => {
-  console.log('hei');
   return (
     <>
       <Navbar />
