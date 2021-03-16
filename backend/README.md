@@ -7,12 +7,12 @@
 ```
 Ola Nordmann {
   email: "ola@gmail.com",
-  passowrd: "password"
+  password: "Password"
 }
 
 Kari Nordmann {
   email: "kari@gmail.com",
-  password: "password"
+  password: "Password"
 }
 ```
 
