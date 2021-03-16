@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.urls import path
-from .views import all_categories
+from .views import category_list
 
 urlpatterns = [
-    path('', all_categories)
+    path('all/', category_list)
     
 ]
