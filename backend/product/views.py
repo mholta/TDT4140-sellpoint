@@ -13,8 +13,8 @@ from rest_framework.response import Response
 def product_list(request):
   if request.method == 'GET':
     produtcs = Product.objects.all()
-    seializer = ProductSerializer(produtcs, many = True)
-    return JsonResponse(seializer.data, safe=False)
+    serializer = ProductSerializer(produtcs, many = True)
+    return JsonResponse(serializer.data, safe=False)
 
 # POST - get products by user id
 @api_view(['POST'])
@@ -23,12 +23,11 @@ def product_list_by_user(request):
   # Get product list by user id
   if request.method == 'POST':
     # Get and filter products by ownerId
-    produtcs = Product.objects.all().filter(ownerId = request.data['ownerId'])
-    seializer = ProductSerializer(produtcs, many = True)
+    products = Product.objects.all().filter(ownerId = request.data['ownerId'])
+    serializer = ProductSerializer(products, many = True)
     # Return products
-    return JsonResponse(seializer.data, safe=False)
+    return JsonResponse(serializer.data, safe=False)
 
-# POST - get products by category id and sort witrh requested sort method
 @api_view(['POST'])
 def product_list_filter_sort(request):
 
@@ -42,6 +41,12 @@ def product_list_filter_sort(request):
     seializer = ProductSerializer(produtcs, many = True)
     # Return products
     return JsonResponse(seializer.data, safe=False)
+
+# Method for getting products within range --NOT FINISHED
+def product_list_by_range(request):
+  products = Product.objects.all()
+  serializer = ProductSerializer(products, many = True)
+  return JsonResponse(serializer.data, safe=False)
 
 # Method for getting one product by sending HTTP GET with /<pk>
 class product_detailed(generics.RetrieveAPIView):

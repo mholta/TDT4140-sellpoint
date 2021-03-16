@@ -1,8 +1,9 @@
 from django.db import models
 from user.models import User
+from category.models import Category
+from location.models import Location
 import string
 import random
-from category.models import Category
 
 def generate_unique_product_code():
   length= 6
@@ -14,7 +15,6 @@ def generate_unique_product_code():
     
   return code
 
-# Create your models here.
 
 class Product(models.Model):
   title = models.CharField( max_length=16, default="", unique=False)
