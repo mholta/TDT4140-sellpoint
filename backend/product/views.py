@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from .serializers import ProductSerializer
 from .models import Product
+from location.models import Location
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -31,6 +32,16 @@ def product_list_by_user(request):
 @api_view(['POST'])
 def product_list_filter_sort(request):
 
+  user_location = Location(longitude=100, latitude=100)
+  product_location = Location(longitude=200, latitude=200)
+
+  dist = user_location.distance_to(product_location)
+  print(dist)
+  distance = 5000
+  #print(Product.objects.annotate(abs_calculation=Func(F()user_location.distance_to(Location.objects.get(id=1)))).filter(abs_calculation_lt=distance))
+  #print(Product.objects.annotate(abs_calculation=Func(F('x') - myPos.x, function='ABS') + Func(F('y') - myPos.y, function='ABS')).filter(abs_calculation__lt=distance))
+
+
   # Get product list by user id
   if request.method == 'POST':
     # Get and filter products by ownerId
@@ -41,6 +52,8 @@ def product_list_filter_sort(request):
     seializer = ProductSerializer(produtcs, many = True)
     # Return products
     return JsonResponse(seializer.data, safe=False)
+
+
 
 # Method for getting products within range --NOT FINISHED
 def product_list_by_range(request):
