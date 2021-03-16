@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import { GetProdByUserIdApiService } from '../../../components/api/getProductsByUser';
 import { LoadStates } from '../../../components/api/loadStates';
-import RootRoutes from '../../RootRoutes';
+import ProductGrid from '../../../components/product/productGrid';
 
 /**
  * Temporary list for viewing all products in database.
@@ -16,15 +15,7 @@ const UserProductList = ({ ownerId }: UserProductListProps) => {
     <>
       {service.status === LoadStates.LOADING && <div>Loading</div>}
       {service.status === LoadStates.LOADED && (
-        <ul>
-          {service.payload.map((data: any, index: number) => (
-            <li key={index}>
-              <Link to={RootRoutes.individualProductWithoutId + data.id}>
-                {data.title + ' - ' + data.description}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ProductGrid productList={service.payload} />
       )}
       {service.status === LoadStates.ERROR && <div>Error</div>}
     </>

@@ -1,7 +1,6 @@
 import { Button } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { GetReqApiService } from '../../components/api/getUser';
 import Navbar from '../../components/navBar';
 import RootRoutes from '../RootRoutes';
 import UserProductList from './components/productList';
@@ -39,9 +38,10 @@ const UserProfilePage = () => {
               email={userState.userData.email}
               phone_number={userState.userData.phoneNumber}
             />
-            <UserProductList ownerId={userState.userData.id} />
             <Section>
               <Container>
+                <h2>Annonser</h2>
+                <UserProductList ownerId={userState.userData.id} />
                 <Button
                   href={RootRoutes.newProduct}
                   onClick={(e: any) => {
