@@ -1,6 +1,6 @@
 import { Container, Section } from '../../components/generics/layoutGenerics';
 import Navbar from '../../components/navBar';
-import ProductList from './components/productList';
+import ProductStateWrapper from './components/productStateWrapper';
 
 const HomePage = () => {
   return (
@@ -8,7 +8,7 @@ const HomePage = () => {
       <Navbar />
       <Section>
         <Container>
-          <ProductList />
+          <ProductStateWrapper />
         </Container>
       </Section>
     </>

@@ -28,6 +28,21 @@ def product_list_by_user(request):
     # Return products
     return JsonResponse(seializer.data, safe=False)
 
+# POST - get products by category id and sort witrh requested sort method
+@api_view(['POST'])
+def product_list_filter_sort(request):
+
+  # Get product list by user id
+  if request.method == 'POST':
+    # Get and filter products by ownerId
+    produtcs = Product.objects.all()
+    # If category id is sent with request, filter on this id
+    if (request.data['categoryId'] != None):
+      produtcs = produtcs.filter(categoryId = request.data['categoryId'])
+    seializer = ProductSerializer(produtcs, many = True)
+    # Return products
+    return JsonResponse(seializer.data, safe=False)
+
 # Method for getting one product by sending HTTP GET with /<pk>
 class product_detailed(generics.RetrieveAPIView):
   queryset = Product.objects.all()
