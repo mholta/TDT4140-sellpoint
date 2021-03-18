@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import RootRoutes from '../../RootRoutes';
 import { RootState } from '../../../redux';
 import { useSelector } from 'react-redux';
+import { Category } from '@material-ui/icons';
 
 /**
  * Variable holding Yup-object for form validation.
@@ -31,6 +32,7 @@ const EditProductForm = ({
   image,
   ownerId,
   price,
+  categoryId,
 }: ProductDb) => {
   const history = useHistory();
   const userState = useSelector((state: RootState) => state.user);
@@ -40,6 +42,7 @@ const EditProductForm = ({
       description: description,
       image: image,
       price: price,
+      categoryId: categoryId,
     },
     validationSchema: validationSchema,
     onSubmit: (data) => {
@@ -50,6 +53,7 @@ const EditProductForm = ({
         image: data.image,
         ownerId: ownerId,
         price: Number(data.price),
+        categoryId: data.categoryId,
       };
       console.log('Submitted form data:', data);
       /* Performing HTTP POST to backend using axios library */
