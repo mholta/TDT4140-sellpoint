@@ -21,8 +21,9 @@ const ProductStateWrapper = () => {
     setCurrentDistanceObject,
   ] = useState<DistanceObject | null>(null);
   const [currentSortMethod, setCurrentSortMethod] = useState<string | null>(
-    null
+    'none'
   );
+  console.log(currentSortMethod);
   return (
     <>
       <FilterMenu
