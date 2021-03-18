@@ -1,8 +1,9 @@
 import React from 'react';
+import { withTheme } from '@material-ui/core';
 import styled from 'styled-components';
-import { GetReqApiService } from '../../../components/api/getUser';
 import Categories from './categories';
 import DistanceFilter from './distanceFilter';
+import Sort from './sort';
 
 /**
  * Interface for defining required props when using the component.
@@ -22,15 +23,34 @@ interface FilterMenuProps {
 const FilterMenu = ({
   setCategoryCallback,
   setDistanceObjectCallback,
+  setSortMethodCallback,
 }: FilterMenuProps) => {
   return (
     <FilterMenuWrapper>
-      <h1>Filtrering</h1>
+      <TopGrid>
+        <h1>Den som leter skal finne</h1>
+        <Sort setSortMethodCallback={setSortMethodCallback} />
+      </TopGrid>
       <DistanceFilter setDistanceObjectCallback={setDistanceObjectCallback} />
       <Categories setCategoryCallback={setCategoryCallback} />
     </FilterMenuWrapper>
   );
 };
+
+/**
+ * Styled component for filter menu top grid.
+ */
+
+const TopGrid = withTheme(styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  margin-top: -0.8rem;
+
+  & h1 {
+    color: ${(props) => props.theme.palette.primary.main};
+  }
+`);
 
 /**
  * Styled component for wrapping filter menu content.
