@@ -57,9 +57,9 @@ const NewProductForm = () => {
         .post<ProductDb>('http://localhost:8000/product/', product)
         /* TODO: Remove response from console */
         .then((response) => console.log('HTTP POST response', response))
-        /* If POST was success, redirect to user profile view */
+        /* If POST was success, redirect to individual home page */
         .then(() => {
-          history.push(RootRoutes.userView);
+          history.push(RootRoutes.homePage);
         })
         .catch((error) => {
           console.error(error);
