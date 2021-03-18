@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GetReqApiService } from '../../../components/api/getUser';
 import Categories from './categories';
+import Sort from './sort';
 
 /**
  * Interface for defining required props when using the component.
@@ -17,10 +18,14 @@ interface FilterMenuProps {
  * @param setCategoryCallback callback function for setting current category
  * @returns filter menu component
  */
-const FilterMenu = ({ setCategoryCallback }: FilterMenuProps) => {
+const FilterMenu = ({
+  setCategoryCallback,
+  setSortMethodCallback,
+}: FilterMenuProps) => {
   return (
     <FilterMenuWrapper>
       <h1>Filtrering</h1>
+      <Sort setSortMethodCallback={setSortMethodCallback} />
       <Categories setCategoryCallback={setCategoryCallback} />
     </FilterMenuWrapper>
   );

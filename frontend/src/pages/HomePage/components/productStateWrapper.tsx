@@ -17,8 +17,9 @@ const ProductStateWrapper = () => {
     null
   );
   const [currentSortMethod, setCurrentSortMethod] = useState<string | null>(
-    null
+    'none'
   );
+  console.log(currentSortMethod);
   return (
     <>
       <FilterMenu

@@ -31,7 +31,10 @@ const ProductList = ({
   // currentCategoryId og -sortMethod updates
   useEffect(() => {
     axios
-      .post<any>(url, { categoryId: currentCategoryId })
+      .post<any>(url, {
+        categoryId: currentCategoryId,
+        sortMethod: currentSortMethod,
+      })
       .then((response) => response.data)
       .then((response) =>
         setResult({ status: LoadStates.LOADED, payload: response })

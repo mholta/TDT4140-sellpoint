@@ -12,8 +12,8 @@ from rest_framework.response import Response
 @api_view(['GET'])
 def product_list(request):
   if request.method == 'GET':
-    produtcs = Product.objects.all()
-    seializer = ProductSerializer(produtcs, many = True)
+    products = Product.objects.all()
+    seializer = ProductSerializer(products, many = True)
     return JsonResponse(seializer.data, safe=False)
 
 # POST - get products by user id
@@ -23,8 +23,8 @@ def product_list_by_user(request):
   # Get product list by user id
   if request.method == 'POST':
     # Get and filter products by ownerId
-    produtcs = Product.objects.all().filter(ownerId = request.data['ownerId'])
-    seializer = ProductSerializer(produtcs, many = True)
+    products = Product.objects.all().filter(ownerId = request.data['ownerId'])
+    seializer = ProductSerializer(products, many = True)
     # Return products
     return JsonResponse(seializer.data, safe=False)
 
@@ -34,12 +34,23 @@ def product_list_filter_sort(request):
 
   # Get product list by user id
   if request.method == 'POST':
+    print(request.data)
     # Get and filter products by ownerId
-    produtcs = Product.objects.all()
+    products = Product.objects.all()
     # If category id is sent with request, filter on this id
     if (request.data['categoryId'] != None):
-      produtcs = produtcs.filter(categoryId = request.data['categoryId'])
-    seializer = ProductSerializer(produtcs, many = True)
+      products = products.filter(categoryId = request.data['categoryId'])
+    sort = request.data["sortMethod"]
+    if (sort != None):
+      if (sort == "price_asc"):
+        products = products.order_by("price")
+      elif (sort == "price_desc"):
+        products = products.order_by("-price")
+      elif (sort == "newest"):
+        products = products.order_by("-created_at")
+      elif (sort == "random"):
+        products = products.order_by("?")
+    seializer = ProductSerializer(products, many = True)
     # Return products
     return JsonResponse(seializer.data, safe=False)
 

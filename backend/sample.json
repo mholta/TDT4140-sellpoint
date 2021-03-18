@@ -55,7 +55,8 @@
       "image": "https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
       "price": 100,
       "ownerId": 50,
-      "categoryId": 51
+      "categoryId": 51,
+      "created_at": "2020-01-20T10:00:00"
     }
   },
 
@@ -68,7 +69,8 @@
       "image": "https://cdn.skatepro.com/product/440/playlife-classic-figure-skates-p3.jpg",
       "price": 450,
       "ownerId": 51,
-      "categoryId": 53
+      "categoryId": 53,
+      "created_at": "2020-01-20T10:00:00"
     }
   },
 
@@ -81,6 +83,7 @@
       "image": "https://i.etsystatic.com/17484155/r/il/26db79/2793051787/il_1588xN.2793051787_je7l.jpg",
       "price": 250,
       "ownerId": 51,
+      "created_at": "2020-01-20T10:00:00",
       "categoryId": 53
     }
   },
@@ -94,6 +97,7 @@
       "image": "https://img1-327a.kxcdn.com/DataImage.ashx/7942203",
       "price": 2100,
       "ownerId": 51,
+      "created_at": "2020-01-20T10:00:00",
       "categoryId": 54
     }
   },
@@ -107,6 +111,7 @@
       "image": "https://www.t-a-o.com/medias/96387-02612-A-Tao-WorkingFormat-1200x1200?context=bWFzdGVyfGltYWdlc3wxMDM4Nzh8aW1hZ2UvanBlZ3xpbWFnZXMvaDExL2hmMi8xMTE5OTA4MzYxMDE0Mi5qcGd8ZGI2NWRmZGNlNDE0NWNlMzU2MTFlZDhkZmUyNGIyOTNiZjJlMTIxNzcwNDRiZWE0OTQxOWFjMjdhY2RmYTVlYw",
       "price": 200,
       "ownerId": 51,
+      "created_at": "2020-01-20T10:00:00",
       "categoryId": 55
     }
   },
@@ -120,6 +125,7 @@
       "image": "https://a-mobler-prod.imgix.net/~/pir/products/pmr17108/pmr17108-mr17108.jpg?h=800&w=800",
       "price": 410,
       "ownerId": 50,
+      "created_at": "2020-11-20T10:00:00",
       "categoryId": 51
     }
   },
@@ -133,6 +139,7 @@
       "image": "https://z2.adlibris.com/35/1df22c42-9baa-42c9-95a9-52dc8e336b64.jpg?width=600&height=600",
       "price": 90,
       "ownerId": 50,
+      "created_at": "2020-11-20T10:00:00",
       "categoryId": 52
     }
   },
@@ -146,6 +153,7 @@
       "image": "https://cdn3.jysk.com/getimage/wd2.large/105697",
       "price": 130,
       "ownerId": 50,
+      "created_at": "2020-09-19T10:00:00",
       "categoryId": 51
     }
   },
@@ -159,6 +167,7 @@
       "image": "https://www.iglow.no/images/public/thumb/702/526/grhiniupgrererrzvw_thumb_702_526.jpeg",
       "price": 500,
       "ownerId": 51,
+      "created_at": "2020-09-19T10:00:00",
       "categoryId": 51
     }
   },
@@ -172,6 +181,7 @@
       "image": "https://stoystore.com/content/uploads/F4479_1982_687-Washed-Denim-scaled.jpg",
       "price": 260,
       "ownerId": 50,
+      "created_at": "2020-09-19T10:00:00",
       "categoryId": 55
     }
   },
@@ -185,6 +195,7 @@
       "image": "https://media.digikey.com/Photos/Silicon%20Labs%20Photos/MFG_SLSTK3701A.jpg",
       "price": 300,
       "ownerId": 51,
+      "created_at": "2020-12-19T10:00:00",
       "categoryId": 54
     }
   },
@@ -198,6 +209,7 @@
       "image": "https://media.newyorker.com/photos/59ee325f1685003c9c28c4ad/master/w_2560%2Cc_limit/Heller-Kirkus-Reviews.jpg",
       "price": 100,
       "ownerId": 50,
+      "created_at": "2020-12-25T10:00:00",
       "categoryId": 57
     }
   },
@@ -211,6 +223,7 @@
       "image": "https://www.coats.com/-/media/Coats/End-Use/Household-and-Recreation/Kites/Household-and-recreation---sporting-goods--kite-01.jpg?rev=0ba06cc34a384b8aa9bf5afcb85472f7&width=1240&height=338&op=crop",
       "price": 50,
       "ownerId": 50,
+      "created_at": "2020-12-25T10:00:00",
       "categoryId": 53
     }
   },
@@ -224,6 +237,7 @@
       "image": "https://images-na.ssl-images-amazon.com/images/I/71cUB2NRP9L._AC_SL1500_.jpg",
       "price": 90,
       "ownerId": 51,
+      "created_at": "2020-12-25T10:00:00",
       "categoryId": 56
     }
   },
@@ -237,6 +251,7 @@
       "image": "https://img.fruugo.com/product/1/32/140121321_max.jpg",
       "price": 20,
       "ownerId": 50,
+      "created_at": "2020-12-25T10:00:00",
       "categoryId": 50
     }
   }
