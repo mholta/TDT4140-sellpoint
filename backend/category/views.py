@@ -13,3 +13,9 @@ def category_list(request):
     products = Category.objects.all()
     seializer = CategorySerializer(products, many = True)
     return JsonResponse(seializer.data, safe=False)
+
+
+# Method for getting one category by sending HTTP GET with /<pk>
+class category_detailed(generics.RetrieveAPIView):
+  queryset = Category.objects.all()
+  serializer_class = CategorySerializer

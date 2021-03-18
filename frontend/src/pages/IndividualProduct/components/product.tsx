@@ -8,6 +8,7 @@ import {
 } from '../../../components/generics/layoutGenerics';
 import DeleteProduct from './deleteProductButton';
 import OwnerDetails from './ownerDetails';
+import CategoryDetails from './categoryDetails';
 import EditProductForm from './editProductForm';
 import { RootState } from '../../../redux';
 import { useSelector } from 'react-redux';
@@ -18,6 +19,7 @@ const ProductSection = ({
   price = 0,
   image = '',
   ownerId = '',
+  categoryId = '',
   id,
 }: ProductProps) => {
   const userState = useSelector((state: RootState) => state.user);
@@ -33,6 +35,7 @@ const ProductSection = ({
             <h1>{title}</h1>
             <div>{price} kr</div>
             <p>{description}</p>
+            <CategoryDetails id={categoryId} />
             <OwnerDetails id={ownerId} />
           </ProfileDataWrapper>
           <Image
@@ -52,6 +55,7 @@ const ProductSection = ({
               image={image}
               ownerId={ownerId}
               id={id}
+              categoryId={categoryId}
             />
           </>
         )}

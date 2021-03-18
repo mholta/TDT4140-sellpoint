@@ -18,7 +18,7 @@ export interface User {
 }
 
 /**
- * Is used for making sure Product object matches Produc object in backend
+ * Is used for making sure Product object matches Product object in backend
  */
 export interface ProductDb {
   id?: number;
@@ -27,4 +27,5 @@ export interface ProductDb {
   image: string;
   price: number;
   ownerId?: string;
+  categoryId?: string;
 }

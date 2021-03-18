@@ -36,7 +36,7 @@ const NewProductForm = () => {
       price: '',
       description: '',
       image: '',
-      category: '',
+      categoryId: '',
     },
     validationSchema: validationSchema,
     onSubmit: (data) => {
@@ -47,7 +47,7 @@ const NewProductForm = () => {
         image: data.image,
         ownerId: userState.isLoggedIn ? userState.userData.id : '',
         price: Number(data.price),
-        /*category: data.category,*/
+        categoryId: data.categoryId,
       };
 
       console.log('Submitted form data:', data);
