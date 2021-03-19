@@ -2,17 +2,14 @@ import RootRoutes from '../../pages/RootRoutes';
 import { LinkUnderline } from '../generics/links';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux';
+import ProfileDropDown from './profileDropDown';
 
 const ProfileNavLink = () => {
   const userState = useSelector((state: RootState) => state.user);
   return (
     <>
       {userState.isLoggedIn ? (
-        <LinkUnderline to={RootRoutes.userView}>
-          {userState.isLoggedIn && userState.userData.email
-            ? userState.userData.firstName + ' ' + userState.userData.lastName
-            : 'Profil'}
-        </LinkUnderline>
+        <ProfileDropDown />
       ) : (
         <LinkUnderline to={RootRoutes.loginUser}>Logg inn</LinkUnderline>
       )}
