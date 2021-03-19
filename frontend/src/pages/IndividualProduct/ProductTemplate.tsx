@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { GetReqApiService } from '../../components/api/getUser';
 import { LoadStates } from '../../components/api/loadStates';
 import Navbar from '../../components/navBar';
-import OwnerDetails from './components/ownerDetails';
 import ProductSection from './components/product';
 
 /**

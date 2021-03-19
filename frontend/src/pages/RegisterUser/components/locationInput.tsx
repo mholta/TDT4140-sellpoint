@@ -31,26 +31,6 @@ const LocationInput = ({
   const [locationInputError, setLocationInputError] = useState<boolean>(false);
   const [locationInputLabel, setLocationInputLabel] = useState<string>(' ');
 
-  // When pressing enter in input or slider has been inactive for 1000ms
-  const handleFormSubmit = async (event?: React.FormEvent) => {
-    // Prevent page reload
-    event?.preventDefault();
-
-    // If text input is not null, get address from GeoCode API
-    if (locationInput)
-      await GeoCode.fromAddress(locationInput)
-        .then((response) => {
-          const { lat, lng } = response.results[0].geometry.location;
-          setLocationObjectCallback({ latitude: lat, longitude: lng });
-          setLocationInputLabel(response.results[0].formatted_address);
-          setLocationInputError(false);
-        })
-        .catch((error) => {
-          console.error('Could not find requested location.');
-          setLocationInputError(true);
-        });
-  };
-
   /* Dont want to send HTTP request on each key press.
     Checks this by waiting for inactivity for 2 sec */
   let inputTimeout: any;
@@ -76,7 +56,19 @@ const LocationInput = ({
 
   // Trigger handleFormSubmit when locationInput constant is changed.
   useEffect(() => {
-    handleFormSubmit();
+    if (locationInput)
+      GeoCode.fromAddress(locationInput)
+        .then((response) => {
+          const { lat, lng } = response.results[0].geometry.location;
+          setLocationObjectCallback({ latitude: lat, longitude: lng });
+          setLocationInputLabel(response.results[0].formatted_address);
+          setLocationInputError(false);
+        })
+        .catch((error) => {
+          console.error('Could not find requested location.');
+          setLocationInputError(true);
+        });
+    // eslint-disable-next-line
   }, [locationInput]);
 
   return (
