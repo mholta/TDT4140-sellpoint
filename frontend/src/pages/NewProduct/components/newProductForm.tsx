@@ -50,8 +50,6 @@ const NewProductForm = () => {
         categoryId: data.categoryId,
       };
 
-      console.log('Submitted form data:', data);
-
       /* Performing HTTP POST to backend using axios library */
       axios
         .post<ProductDb>('http://localhost:8000/product/', product)
@@ -134,73 +132,3 @@ const NewProductForm = () => {
 };
 
 export default NewProductForm;
-
-/*import { Field, Formik } from 'formik';
-import React from 'react';
-import { InputField } from '../../../components/fields/InputField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-  }),
-);
-
-function RegisterForm() {
-  const classes = useStyles();
-
-  return (
-    <Formik
-      onSubmit={(data) => {
-        console.log(data);
-      }}
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        password: '',
-      }}
-    >
-      {({ handleSubmit }) => (
-        <form className={classes.root} onSubmit={ handleSubmit } >
-          <Field
-            name="firstName"
-            placeholder="Fornavn"
-            component={InputField}
-          />
-          <Field
-            name="lastName"
-            placeholder="Etternavn"
-            component={InputField}
-          />
-          <Field
-            name="email"
-            placeholder="E-postadresse"
-            component={InputField}
-          />
-          <Field
-            name="phoneNumber"
-            placeholder="Mobilnummer"
-            component={InputField}
-          />
-          <Field
-            name="password"
-            placeholder="Passord"
-            type="password"
-            component={InputField}
-          />
-          <button type="submit">Registrer</button>
-        </form>
-      )}
-    </Formik>
-  );
-}
-
-export default RegisterForm;
-*/

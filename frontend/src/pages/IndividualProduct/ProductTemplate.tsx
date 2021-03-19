@@ -18,7 +18,6 @@ const ProductTemplate = () => {
   let { id } = useParams<ParamTypes>();
   /* Use api service for getting user and showing different states */
   const service = GetReqApiService('http://127.0.0.1:8000/product/' + id);
-  console.log(service);
 
   return (
     <>
@@ -27,7 +26,8 @@ const ProductTemplate = () => {
         {service.status === LoadStates.LOADING && <div>Loading</div>}
         {service.status === LoadStates.LOADED && (
           <>
-            <ProductSection {...service.payload} id={id} /> {/* Everything (...) in payload is sent to ProductSection */}
+            <ProductSection {...service.payload} id={id} />{' '}
+            {/* Everything (...) in payload is sent to ProductSection */}
           </>
         )}
         {service.status === LoadStates.ERROR && <div>Error</div>}

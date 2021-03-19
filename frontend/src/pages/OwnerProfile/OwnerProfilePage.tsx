@@ -26,9 +26,6 @@ const OwnerProfilePage = () => {
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
 
-  console.log(id);
-  console.log(userState.isLoggedIn ? userState.userData.id : '');
-
   if (userState.isLoggedIn && userState.userData.id.toString() === id)
     history.push(RootRoutes.userView);
 

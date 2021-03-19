@@ -23,7 +23,7 @@ const DeleteProduct = ({ id }: DeleteButtonProps) => {
         history.push(RootRoutes.userView);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   return (

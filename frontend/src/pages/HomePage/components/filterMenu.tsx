@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GetReqApiService } from '../../../components/api/getUser';
 import Categories from './categories';
+import DistanceFilter from './distanceFilter';
 
 /**
  * Interface for defining required props when using the component.
@@ -9,6 +10,7 @@ import Categories from './categories';
 interface FilterMenuProps {
   setCategoryCallback: Function;
   setSortMethodCallback: Function;
+  setDistanceObjectCallback: Function;
 }
 
 /**
@@ -17,10 +19,14 @@ interface FilterMenuProps {
  * @param setCategoryCallback callback function for setting current category
  * @returns filter menu component
  */
-const FilterMenu = ({ setCategoryCallback }: FilterMenuProps) => {
+const FilterMenu = ({
+  setCategoryCallback,
+  setDistanceObjectCallback,
+}: FilterMenuProps) => {
   return (
     <FilterMenuWrapper>
       <h1>Filtrering</h1>
+      <DistanceFilter setDistanceObjectCallback={setDistanceObjectCallback} />
       <Categories setCategoryCallback={setCategoryCallback} />
     </FilterMenuWrapper>
   );

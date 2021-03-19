@@ -4,9 +4,11 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from .serializers import ProductSerializer
 from .models import Product
+from user.models import User
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.db.models.expressions import RawSQL
 
 # Method for getting all products by sending HTTP GET to /all
 @api_view(['GET'])
@@ -31,17 +33,57 @@ def product_list_by_user(request):
 # POST - get products by category id and sort witrh requested sort method
 @api_view(['POST'])
 def product_list_filter_sort(request):
-
   # Get product list by user id
   if request.method == 'POST':
-    # Get and filter products by ownerId
-    produtcs = Product.objects.all()
+
+    # If distance object is sent
+    try:
+      distance_object = request.data['distance_object']
+      latitude = distance_object.get('latitude')
+      longitude = distance_object.get('longitude')
+      max_distance = distance_object.get('max_distance')
+      print(max_distance)
+      products = get_products_nearby_coords(latitude,longitude,max_distance)
+    except:
+      # Get and filter products by ownerId
+      products = Product.objects.all()
+
     # If category id is sent with request, filter on this id
     if (request.data['categoryId'] != None):
-      produtcs = produtcs.filter(categoryId = request.data['categoryId'])
-    seializer = ProductSerializer(produtcs, many = True)
+      products = products.filter(categoryId = request.data['categoryId'])
+    seializer = ProductSerializer(products, many = True)
     # Return products
     return JsonResponse(seializer.data, safe=False)
+
+# Method for getting products nearby
+def get_products_nearby_coords(latitude, longitude, max_distance=None):
+    """
+    Return objects sorted by distance to specified coordinates
+    which distance is less than max_distance given in kilometers
+    """
+    # Great circle distance formula
+    gcd_formula = "6371 * acos(least(greatest(\
+    cos(radians(%s)) * cos(radians(latitude)) \
+    * cos(radians(longitude) - radians(%s)) + \
+    sin(radians(%s)) * sin(radians(latitude)) \
+    , -1), 1))"
+    distance_raw_sql = RawSQL(
+        gcd_formula,
+        (latitude, longitude, latitude)
+    )
+
+    # Users closer than max_distance from (latitude, longitude)
+    users = User.objects.all().exclude(latitude__isnull=True)\
+    .exclude(longitude__isnull=True) \
+    .annotate(distance=distance_raw_sql)\
+    .order_by('distance')
+
+    # Filter users closer than max_distance from (latitude, longitude)
+    # and get products owned by these users
+    if max_distance is not None:
+      users = users.filter(distance__lt=max_distance).values_list('id')
+      products = Product.objects.filter(ownerId__in=users)
+    return products
 
 # Method for getting one product by sending HTTP GET with /<pk>
 class product_detailed(generics.RetrieveAPIView):

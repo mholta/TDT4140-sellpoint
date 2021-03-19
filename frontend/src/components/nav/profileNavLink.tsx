@@ -5,7 +5,6 @@ import { RootState } from '../../redux';
 
 const ProfileNavLink = () => {
   const userState = useSelector((state: RootState) => state.user);
-  console.log(userState);
   return (
     <>
       {userState.isLoggedIn ? (

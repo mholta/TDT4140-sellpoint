@@ -14,7 +14,9 @@ export interface User {
   last_name: string;
   email: string;
   phone_number: string;
-  password: string;
+  password?: string;
+  latitude: number;
+  longitude: number;
 }
 
 /**
