@@ -1,12 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import RootRoutes from '../pages/RootRoutes';
+import { RootState } from '../redux';
 import Logo from '../statics/logo.svg';
 import { LinkUnderline } from './generics/links';
 import ProfileNavLink from './nav/profileNavLink';
 
 const Navbar = () => {
+  const userState = useSelector((state: RootState) => state.user);
   return (
     <NavWrapper>
       <ImageWrapper>
@@ -16,12 +19,13 @@ const Navbar = () => {
       </ImageWrapper>
       <MenuList>
         <li>
-          <LinkUnderline to={RootRoutes.registerUser}>
-            Registrer bruker
-          </LinkUnderline>
-        </li>
-        <li>
-          <LinkUnderline to={RootRoutes.userView}>Vis bruker</LinkUnderline>
+          {userState.isLoggedIn && userState.userData.email ? (
+            ''
+          ) : (
+            <LinkUnderline to={RootRoutes.registerUser}>
+              Registrer bruker
+            </LinkUnderline>
+          )}
         </li>
       </MenuList>
       <ProfileWrapper>

@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { logOut } from '../../../redux/user/user.actions';
@@ -31,9 +31,11 @@ const DeleteUser = ({ id }: DeleteButtonProps) => {
       });
   };
   return (
-    <Button onClick={handleOnClick} color="secondary" variant="contained">
-      Slett bruker
-    </Button>
+    <Box mt={2}>
+      <Button onClick={handleOnClick} color="secondary" variant="contained">
+        Slett bruker
+      </Button>
+    </Box>
   );
 };
 

@@ -10,6 +10,7 @@ import RootRoutes from '../../RootRoutes';
 import { setUser } from '../../../redux/user/user.actions';
 import { useDispatch } from 'react-redux';
 import DeleteUser from './deleteUserButton';
+import { Box } from '@material-ui/core';
 
 /**
  * Variable holding Yup-object for form validation.
@@ -138,9 +139,11 @@ const EditUserForm = ({
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Lagre endringer
-        </Button>
+        <Box mt={1}>
+          <Button color="primary" variant="contained" fullWidth type="submit">
+            Lagre endringer
+          </Button>
+        </Box>
       </form>
 
       <DeleteUser id={id} />
