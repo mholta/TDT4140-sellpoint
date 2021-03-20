@@ -7,6 +7,7 @@ import {
   Section,
 } from '../../../components/generics/layoutGenerics';
 import { LinkUnderline } from '../../../components/generics/links';
+import UserLocation from '../../../components/user/userLocation';
 import { BackgroundLayer } from '../../UserProfile/components/profile';
 
 /**
@@ -24,7 +25,8 @@ const ProfileSection = ({
   last_name,
   email,
   phone_number,
-  location = 'Trondheim, Norge',
+  latitude,
+  longitude,
 }: ProfileProps) => {
   /* Fall back to default image if no image url is passed in */
   const defaultImageUrl =
@@ -37,7 +39,9 @@ const ProfileSection = ({
         <ProfileInfoGrid>
           <ProfileDataWrapper>
             <h1>{first_name + ' ' + last_name}</h1>
-            <div>{location}</div>
+            <div>
+              <UserLocation latitude={latitude} longitude={longitude} />
+            </div>
             <div>{phone_number}</div>
             <LinkUnderline
               to={'mailto:' + email}
@@ -81,7 +85,7 @@ const ProfileInfoGrid = styled.div`
   column-gap: 2rem;
 `;
 
-export interface ProfileProps extends Partial<User> {
+export interface ProfileProps extends User {
   location?: string;
 }
 

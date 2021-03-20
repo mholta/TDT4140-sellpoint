@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
 import { GetReqApiService } from '../../../components/api/getUser';
 import { LoadStates } from '../../../components/api/loadStates';
-import RootRoutes from '../../RootRoutes';
 
 /**
  * Page wrapper component for Category profile page.

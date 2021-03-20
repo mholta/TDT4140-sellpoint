@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { GetLocationFromLatLng } from '../../../components/api/location';
+import { GetUserLocationFromLatLng } from '../../../components/api/location';
 import { User } from '../../../components/api/types';
 import Image from '../../../components/generics/image';
 import {
@@ -32,7 +32,7 @@ const ProfileSection = ({
     'https://images.unsplash.com/photo-1492546662075-aabebf46dee2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80';
 
   const [location, setLocation] = useState<string | null>(null);
-  GetLocationFromLatLng(latitude, longitude).then((response) =>
+  GetUserLocationFromLatLng(latitude, longitude).then((response) =>
     setLocation(response)
   );
 
@@ -43,7 +43,7 @@ const ProfileSection = ({
         <ProfileInfoGrid>
           <ProfileDataWrapper>
             <h1>{first_name + ' ' + last_name}</h1>
-            <div>{location}</div>
+            <div>{location ?? '...'}</div>
             <div>{phone_number}</div>
             <LinkUnderline
               to={'mailto:' + email}
