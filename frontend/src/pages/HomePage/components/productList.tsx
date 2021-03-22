@@ -37,6 +37,7 @@ const ProductList = ({
       .post<any>(url, {
         categoryId: currentCategoryId,
         distance_object: currentDistanceObject,
+        sortMethod: currentSortMethod,
       })
       .then((response) => response.data)
       .then((response) =>

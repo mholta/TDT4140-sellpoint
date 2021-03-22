@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 2rem;
+  line-height: 1;
+  color: #ccc;
+}
