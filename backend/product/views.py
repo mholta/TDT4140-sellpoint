@@ -3,7 +3,7 @@ from rest_framework import generics
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from .serializers import ProductSerializer
-from .models import Product
+from .models import Product, UserFavorites
 from user.models import User
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -146,9 +146,9 @@ def product(request):
 @api_view(['GET'])
 def user_favorites_list(request):
   if request.method == 'GET':
-    favorites = UserFavorites.objects.all().filter(ownerId = request.data['ownerId'])
-    seializer = UserFavoritesSerializer(userFavorites, many = True)
-    return JsonResponse(seializer.data, safe=False)
+    favorites = UserFavorites.objects.all().filter(user = request.data['User'])
+    serializer = UserFavoritesSerializer(userFavorites, many = True)
+    return JsonResponse(serializer.data, safe=False)
 
 
 # Method for adding one product to a users favorites by sending HTTP POST.
