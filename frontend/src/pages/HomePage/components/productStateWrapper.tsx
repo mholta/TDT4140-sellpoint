@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 import FilterMenu from './filterMenu';
 import ProductList from './productList';
 
@@ -23,22 +24,30 @@ const ProductStateWrapper = () => {
   const [currentSortMethod, setCurrentSortMethod] = useState<string | null>(
     'none'
   );
-  console.log(currentSortMethod);
+
   return (
-    <>
-      <FilterMenu
-        setCategoryCallback={setCurrentCategoryId}
-        setSortMethodCallback={setCurrentSortMethod}
-        setDistanceObjectCallback={setCurrentDistanceObject}
-      />
+    <MainGrid>
+      <div>
+        <FilterMenu
+          setCategoryCallback={setCurrentCategoryId}
+          setSortMethodCallback={setCurrentSortMethod}
+          setDistanceObjectCallback={setCurrentDistanceObject}
+        />
+      </div>
       <ProductList
         currentCategoryId={currentCategoryId}
         currentSortMethod={currentSortMethod}
         currentDistanceObject={currentDistanceObject}
       />
-    </>
+    </MainGrid>
   );
 };
+
+const MainGrid = styled.div`
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+`;
 
 export interface DistanceObject {
   latitude: number;
