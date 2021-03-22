@@ -38,7 +38,7 @@ const OwnerProfilePage = () => {
             <ProfileSection {...service.payload} />{' '}
             <Section>
               <Container>
-                <h2>Produkter</h2>
+                <h2>Annonser</h2>
                 <UserProductList ownerId={id ?? ''} />
               </Container>
             </Section>

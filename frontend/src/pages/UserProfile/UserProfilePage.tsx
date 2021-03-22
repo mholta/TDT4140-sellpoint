@@ -11,6 +11,7 @@ import { useHistory } from 'react-router-dom';
 import { RootState } from '../../redux';
 import EditUserForm from './components/editUserForm';
 import { Container, Section } from '../../components/generics/layoutGenerics';
+import ProfileTab from './components/profileTab';
 
 /**
  * Page wrapper component for User profile page.
@@ -43,6 +44,7 @@ const UserProfilePage = () => {
             />
             <Section>
               <Container>
+                <ProfileTab></ProfileTab>
                 <h2>Annonser</h2>
                 <UserProductList ownerId={userState.userData.id} />
                 <Button
