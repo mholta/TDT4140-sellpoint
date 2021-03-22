@@ -5,8 +5,8 @@ import Navbar from '../../components/navBar';
 import RootRoutes from '../RootRoutes';
 import UserProductList from './components/productList';
 import ProfileSection from './components/profile';
-import { /*useDispatch,*/ useSelector } from 'react-redux';
-// import { logOut } from '../../redux/user/user.actions';
+import { useSelector } from 'react-redux';
+
 import { useHistory } from 'react-router-dom';
 import { RootState } from '../../redux';
 import EditUserForm from './components/editUserForm';
