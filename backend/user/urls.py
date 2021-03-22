@@ -16,4 +16,5 @@ urlpatterns = [
 
     # GET - all users
     path('all/', all_users.as_view())
+
 ]
