@@ -140,3 +140,33 @@ def product(request):
       # Return product object - TODO: Needed in frontend? Could meybe remove need of page reload
       return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Method for getting all favorites by sending HTTP GET to /all
+@api_view(['GET'])
+def user_favorites_list(request):
+  if request.method == 'GET':
+    favorites = UserFavorites.objects.all().filter(ownerId = request.data['ownerId'])
+    seializer = UserFavoritesSerializer(userFavorites, many = True)
+    return JsonResponse(seializer.data, safe=False)
+
+
+# Method for adding one product to a users favorites by sending HTTP POST.
+# Use cases
+# POST - recieve new a favorite relation between product and user
+# DELETE - delete a favorite relation between product and user
+@api_view(['POST','DELETE'])
+def user_favorites_view(request):
+  # Recieve new product from backend
+  if request.method == 'POST':
+    serializer = UserFavoritesSerializer(data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
+      # Implement error handling when trying to post a user that already exists
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+  
+  # Delete a favorite relation between product and user
+  elif request.method == 'DELETE':
+    UserFavorites.objects.get(product=request.data['product']).delete()
+    return HttpResponse()

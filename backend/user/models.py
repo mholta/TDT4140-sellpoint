@@ -26,3 +26,5 @@ class User(models.Model):
 
     latitude = models.FloatField( null=True)
     longitude = models.FloatField( null=True)
+
+    favorites = models

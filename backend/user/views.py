@@ -82,3 +82,5 @@ def user_list(request):
       return Response(serializer.data, status=status.HTTP_201_CREATED)
     # TODO: Implement error handling when trying to post a user that already exists
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+

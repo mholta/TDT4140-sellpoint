@@ -29,3 +29,7 @@ class Product(models.Model):
 
   latitude = models.FloatField( null=True)
   longitude = models.FloatField( null=True)
+
+class UserFavorites(models.Model):
+  user = models.name = models.ForeignKey(User, blank='True', on_delete=models.CASCADE)
+  product = models.name = models.ForeignKey(Product, blank = 'True', on_delete=models.CASCADE)
