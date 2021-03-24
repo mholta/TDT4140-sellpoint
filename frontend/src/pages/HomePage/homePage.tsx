@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <Navbar />
       <Section>
-        <Container>
+        <Container style={{ maxWidth: '1200px' }}>
           <ProductStateWrapper />
         </Container>
       </Section>

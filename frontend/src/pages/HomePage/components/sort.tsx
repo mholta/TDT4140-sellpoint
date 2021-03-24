@@ -34,9 +34,9 @@ const Sort = ({ setSortMethodCallback }: SortProps) => {
 
   return (
     <>
-      <FormControl component="fieldset">
+      <h2>Sorter</h2>
+      <FormControl component="fieldset" fullWidth>
         <FormControl className={classes.formControl}>
-          <InputLabel id="sort-select-label">Sorter på</InputLabel>
           <Select
             labelId="sort-select-label"
             id="sort-select"
@@ -56,7 +56,7 @@ const Sort = ({ setSortMethodCallback }: SortProps) => {
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
+    margin: 0,
     minWidth: 120,
   },
   selectEmpty: {

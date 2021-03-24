@@ -93,20 +93,21 @@ const DistanceFilter = ({ setDistanceObjectCallback }: FilterMenuProps) => {
   };
 
   return (
-    <>
-      <h1></h1>
-      <DistanceFilterForm onSubmit={handleFormSubmit}>
-        <TextField
-          id="location"
-          label="Sted"
-          onInput={handleTextInputChange}
-          error={locationInputError}
-          helperText={
-            locationInputError
-              ? 'Fant ikke sted. Prøv igjen.'
-              : locationInputLabel ?? ' '
-          }
-        />
+    <DistanceFilterForm onSubmit={handleFormSubmit}>
+      <h2>Sted</h2>
+      <TextField
+        id="location"
+        label="Sted"
+        onInput={handleTextInputChange}
+        error={locationInputError}
+        fullWidth
+        helperText={
+          locationInputError
+            ? 'Fant ikke sted. Prøv igjen.'
+            : locationInputLabel ?? ' '
+        }
+      />
+      <SliderWrapper>
         <MaxDistanceSlider
           defaultValue={1}
           min={1}
@@ -115,6 +116,8 @@ const DistanceFilter = ({ setDistanceObjectCallback }: FilterMenuProps) => {
           marks={sliderMarks}
           onChange={handleSliderChange}
         />
+      </SliderWrapper>
+      <ButtonsWrapper>
         <Button
           color="primary"
           disabled={!locationInput.trim()}
@@ -131,15 +134,15 @@ const DistanceFilter = ({ setDistanceObjectCallback }: FilterMenuProps) => {
         >
           Fjern stedfilter
         </Button>
-      </DistanceFilterForm>
-    </>
+      </ButtonsWrapper>
+    </DistanceFilterForm>
   );
 };
 
 /* Marks at start and end of slider */
 const sliderMarks = [
   {
-    value: 1,
+    value: 0,
     label: '1km',
   },
   {
@@ -150,15 +153,38 @@ const sliderMarks = [
 
 /* Styled component for displaying filtermenu form properly */
 const DistanceFilterForm = styled.form`
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr 1fr auto auto;
-  align-items: center;
+  margin-top: 2rem;
+
+  & h2 {
+    margin: 0;
+  }
+`;
+
+const SliderWrapper = styled.div`
+  padding: 0 1rem;
 `;
 
 /* Styled component for vertically aligning the Slider component */
 const MaxDistanceSlider = styled(Slider)`
-  margin-top: 2.8rem;
+  margin-top: 2rem;
+  & > span.MuiSlider-markLabel {
+    margin-left: 0.9em;
+    & ~ span.MuiSlider-markLabel {
+      margin-left: -1.4em;
+    }
+  }
+`;
+
+const ButtonsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1rem;
+
+  & > button {
+    font-size: 12px;
+    padding: 6px;
+    margin: 0;
+  }
 `;
 
 /* Specifies how the LocationObject should be */

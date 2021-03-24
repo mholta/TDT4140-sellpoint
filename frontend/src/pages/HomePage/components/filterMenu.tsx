@@ -27,10 +27,8 @@ const FilterMenu = ({
 }: FilterMenuProps) => {
   return (
     <FilterMenuWrapper>
-      <TopGrid>
-        <h1>Den som leter skal finne</h1>
-        <Sort setSortMethodCallback={setSortMethodCallback} />
-      </TopGrid>
+      <h1>Filtrer</h1>
+      <Sort setSortMethodCallback={setSortMethodCallback} />
       <DistanceFilter setDistanceObjectCallback={setDistanceObjectCallback} />
       <Categories setCategoryCallback={setCategoryCallback} />
     </FilterMenuWrapper>
@@ -38,24 +36,11 @@ const FilterMenu = ({
 };
 
 /**
- * Styled component for filter menu top grid.
- */
-
-const TopGrid = withTheme(styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  margin-top: -0.8rem;
-
-  & h1 {
-    color: ${(props) => props.theme.palette.primary.main};
-  }
-`);
-
-/**
  * Styled component for wrapping filter menu content.
  */
 const FilterMenuWrapper = styled.div`
+  position: sticky;
+  top: 2rem;
   border: 2px solid #ddd;
   background-color: white;
   padding: 2rem;
