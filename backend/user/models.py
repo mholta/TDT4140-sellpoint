@@ -2,6 +2,8 @@ from django.db import models
 import math
 from django.db.backends.signals import connection_created
 from django.dispatch import receiver
+from django.utils.crypto import get_random_string
+
 
 @receiver(connection_created)
 def extend_sqlite(connection=None, **kwargs):
@@ -28,3 +30,14 @@ class User(models.Model):
     longitude = models.FloatField( null=True)
 
     favorites = models
+
+    # Weak security, but works for persistant login
+    session = models.CharField(max_length=50, null=True)
+
+    def update_session(self):
+        self.session = get_random_string(length=32)
+        self.save()
+    
+    def __str__(self):
+        return self.session
+    

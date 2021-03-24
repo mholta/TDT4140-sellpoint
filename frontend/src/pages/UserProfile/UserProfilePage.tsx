@@ -3,13 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/navBar';
 import RootRoutes from '../RootRoutes';
-import UserProductList from './components/productList';
 import ProfileSection from './components/profile';
 import { useSelector } from 'react-redux';
-
 import { useHistory } from 'react-router-dom';
 import { RootState } from '../../redux';
-import EditUserForm from './components/editUserForm';
 import { Container, Section } from '../../components/generics/layoutGenerics';
 import ProfileTabs from './components/profileTabs';
 
@@ -24,7 +21,6 @@ const UserProfilePage = () => {
   // TODO: Issue with mounting
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
-  if (!userState.isLoggedIn) history.push(RootRoutes.loginUser);
 
   return (
     <>
