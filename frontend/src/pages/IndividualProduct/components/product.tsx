@@ -12,6 +12,8 @@ import CategoryDetails from './categoryDetails';
 import EditProductForm from './editProductForm';
 import { RootState } from '../../../redux';
 import { useSelector } from 'react-redux';
+import FavoriteHeart from './favouriteHeart';
+import CountFavorites from './countFavorites';
 
 const ProductSection = ({
   title = '',
@@ -32,6 +34,12 @@ const ProductSection = ({
       <Container>
         <ProfileInfoGrid>
           <ProfileDataWrapper>
+            {userState.isLoggedIn &&
+              (userState.userData.id !== ownerId ? (
+                <FavoriteHeart productId={id} ownerId={userState.userData.id} />
+              ) : (
+                <CountFavorites productId={id} />
+              ))}
             <h1>{title}</h1>
             <div>{price} kr</div>
             <p>{description}</p>
