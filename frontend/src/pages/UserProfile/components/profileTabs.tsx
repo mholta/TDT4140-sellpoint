@@ -5,18 +5,21 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import ProductList from '../../HomePage/components/productList';
 import UserProductList from './productList';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux';
-import { User } from '../../../components/api/types';
 import { UserStateData } from '../../../redux/user/user.reducer';
 import EditUserForm from './editUserForm';
+import UserFavoritesList from './productFavoritesList';
 
 interface ProfileTabsProps {
   userData: UserStateData;
 }
 
+/**
+ * Component for showing tabs on the user page.
+ *
+ * @param userData - UserState object containg data for the current user
+ * @returns Tab component
+ */
 const ProfileTabs = ({ userData }: ProfileTabsProps) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -43,7 +46,7 @@ const ProfileTabs = ({ userData }: ProfileTabsProps) => {
         <UserProductList ownerId={userData.id} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Her kommer favoritter
+        <UserFavoritesList ownerId={userData.id} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <EditUserForm

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import path
-from .views import product, product_list,product_detailed, product_list_by_user, product_list_filter_sort, user_favorites_list, user_favorites_view
+from .views import product, product_list,product_detailed, product_list_by_user, product_list_filter_sort, user_favorites_list, user_favorites_view,user_favorites_count
 
 urlpatterns = [
     path('', product),
@@ -12,6 +12,7 @@ urlpatterns = [
     # GET - favorites by user
     path('favorites_list/', user_favorites_list),
 
-    # POST/DELETE - create/delete favorite relation between user and product
-    path('favorites/', user_favorites_view)
+    # PUT/POST/DELETE - create/get/delete favorite relation between user and product
+    path('favorites/', user_favorites_view),
+    path('favorites_count/', user_favorites_count)
 ]

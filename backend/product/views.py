@@ -2,13 +2,15 @@ from django.shortcuts import render
 from rest_framework import generics
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer, UserFavoritesSerializer
 from .models import Product, UserFavorites
 from user.models import User
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models.expressions import RawSQL
+from django.db.models import F
+
 
 # Method for getting all products by sending HTTP GET to /all
 @api_view(['GET'])
@@ -128,7 +130,6 @@ def product(request):
   elif request.method == 'PUT':
     # Find product with pk and send 404 if not found
     try:
-        print(request.data)
         product = Product.objects.get(pk=request.data['id'])
     except Product.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
@@ -142,25 +143,37 @@ def product(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# Method for getting all favorites by sending HTTP GET to /all
-@api_view(['GET'])
+# Method for getting all favorites by sending HTTP POST
+@api_view(['POST'])
 def user_favorites_list(request):
-  if request.method == 'GET':
-    favorites = UserFavorites.objects.all().filter(user = request.data['User'])
-    serializer = UserFavoritesSerializer(userFavorites, many = True)
+  if request.method == 'POST':
+    favorites = UserFavorites.objects.all().filter(user = request.data['ownerId']).values('product')
+    products = Product.objects.filter(id__in=favorites)
+
+    serializer = ProductSerializer(products, many = True)
     return JsonResponse(serializer.data, safe=False)
 
 
 # Method for adding one product to a users favorites by sending HTTP POST.
 # Use cases
-# POST - recieve new a favorite relation between product and user
+# PUT - recieve new a favorite relation between product and user
 # DELETE - delete a favorite relation between product and user
-@api_view(['POST','DELETE'])
+@api_view(['POST','PUT','DELETE'])
 def user_favorites_view(request):
-  # Recieve new product from backend
+  # Return wether a product exists or not
   if request.method == 'POST':
+    found=False
+    # Checks if product is favorite
+    if UserFavorites.objects.filter(product=request.data['product'], user=request.data['user']).exists():
+      return HttpResponse("Product is favorite.", status = 200)
+    return HttpResponse("Product is not a favorite.", status = 204)
+  # Recieve new product from backend
+  elif request.method == 'PUT':
     serializer = UserFavoritesSerializer(data=request.data)
-    if serializer.is_valid():
+    # Return error code 409 if product already is a favourite
+    if UserFavorites.objects.filter(product=request.data['product'], user=request.data['user']).exists():
+      return HttpResponse("Product already a favorite.", status = 409)
+    elif serializer.is_valid():
       serializer.save()
       return Response(serializer.data, status=status.HTTP_201_CREATED)
       # Implement error handling when trying to post a user that already exists
@@ -168,5 +181,18 @@ def user_favorites_view(request):
   
   # Delete a favorite relation between product and user
   elif request.method == 'DELETE':
-    UserFavorites.objects.get(product=request.data['product']).delete()
+    UserFavorites.objects.filter(product=request.data['product'], user=request.data['user']).delete()
     return HttpResponse()
+
+# Method for counting a products total amount of favorite marks
+# Use cases
+@api_view(['POST'])
+def user_favorites_count(request):
+  # Return wether a product exists or not
+  if request.method == 'POST':
+    print(request.data)
+    # Checks if product is favorite
+    if UserFavorites.objects.filter(product=request.data['product']).exists():
+      count = UserFavorites.objects.filter(product=request.data['product']).count()
+      return JsonResponse({'count': count})
+    return HttpResponse("Product is not a favorite.", status = 204)
