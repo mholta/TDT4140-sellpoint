@@ -7,10 +7,7 @@ import {
   Container,
   Section,
 } from '../../../components/generics/layoutGenerics';
-import {
-  LinkUnderline,
-  MuiLinkUnderline,
-} from '../../../components/generics/links';
+import { LinkUnderline } from '../../../components/generics/links';
 import { animateScroll as scroll } from 'react-scroll';
 
 /**
@@ -59,26 +56,6 @@ const ProfileSection = ({
           </ProfileDataWrapper>
           <Image src={defaultImageUrl} borderRadius={50} aspectRatio="1:1" />
         </ProfileInfoGrid>
-        <ProfileLinkWrapper>
-          <div>
-            <MuiLinkUnderline
-              onClick={() => {
-                Scroll.scrollTo(790);
-              }}
-            >
-              Mine annonser
-            </MuiLinkUnderline>
-          </div>
-          <div>
-            <MuiLinkUnderline
-              onClick={() => {
-                Scroll.scrollToBottom();
-              }}
-            >
-              Rediger profil
-            </MuiLinkUnderline>
-          </div>
-        </ProfileLinkWrapper>
       </Container>
     </Section>
   );
@@ -121,16 +98,6 @@ const ProfileDataWrapper = styled.div`
     margin-top: 0;
     margin-bottom: 0.8rem;
   }
-
-  & > div {
-    font-size: 1.4rem;
-    font-weight: 300;
-    margin-bottom: 0;
-  }
-`;
-
-const ProfileLinkWrapper = styled.div`
-  align-self: left;
 
   & > div {
     font-size: 1.4rem;
