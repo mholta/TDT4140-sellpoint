@@ -39,5 +39,5 @@ class User(models.Model):
         self.save()
     
     def __str__(self):
-        return self.session
+        return self.email
     

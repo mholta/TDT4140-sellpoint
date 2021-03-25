@@ -29,10 +29,14 @@ class Product(models.Model):
   latitude = models.FloatField( null=True)
   longitude = models.FloatField( null=True)
 
+  def __str__(self):
+    return self.title
+
+
 class UserFavorites(models.Model):
   user = models.name = models.ForeignKey(User, blank='True', on_delete=models.CASCADE)
   product = models.name = models.ForeignKey(Product, blank = 'True', on_delete=models.CASCADE)
 
-  def ___str__(self):
-      return "UserID: " + self.user + " ProductID: " + self.product
+  def __str__(self):
+    return "User: " + str(self.user) + ", Product: " + str(self.product)
   

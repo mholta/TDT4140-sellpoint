@@ -46,13 +46,8 @@ const ProfileSection = ({
           <ProfileDataWrapper>
             <h1>{first_name + ' ' + last_name}</h1>
             <div>{location ?? '...'}</div>
-            <div>{phone_number}</div>
-            <LinkUnderline
-              to={'mailto:' + email}
-              style={{ margin: '1rem', fontWeight: 'bold', padding: '0.6rem' }}
-            >
-              Ta kontakt
-            </LinkUnderline>
+            <p>{email}</p>
+            <p>{phone_number}</p>
           </ProfileDataWrapper>
           <Image src={defaultImageUrl} borderRadius={50} aspectRatio="1:1" />
         </ProfileInfoGrid>
