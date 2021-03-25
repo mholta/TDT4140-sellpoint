@@ -85,8 +85,8 @@ const NewProductForm = () => {
             <MenuItem value={10}>Bil</MenuItem>
             <MenuItem value={20}>Klær</MenuItem>
             <MenuItem value={30}>Hjem</MenuItem>
-            <MenuItem value={30}>Hage</MenuItem>
-            <MenuItem value={30}>Elektronikk</MenuItem>
+            <MenuItem value={40}>Hage</MenuItem>
+            <MenuItem value={50}>Elektronikk</MenuItem>
           </Select>
         </FormControl>
         <TextField
