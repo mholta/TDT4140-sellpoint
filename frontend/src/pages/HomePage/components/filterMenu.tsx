@@ -39,8 +39,6 @@ const FilterMenu = ({
  * Styled component for wrapping filter menu content.
  */
 const FilterMenuWrapper = styled.div`
-  position: sticky;
-  top: 2rem;
   border: 2px solid #ddd;
   background-color: white;
   padding: 2rem;
