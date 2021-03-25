@@ -38,4 +38,5 @@ export interface UserStateData {
   phoneNumber: string;
   latitude: number;
   longitude: number;
+  session?: string;
 }

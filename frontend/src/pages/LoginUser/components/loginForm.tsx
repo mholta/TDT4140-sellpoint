@@ -49,6 +49,7 @@ const LoginForm = () => {
                 phoneNumber: response.phone_number,
                 latitude: response.latitude,
                 longitude: response.longitude,
+                session: response.session,
               },
             })
           );

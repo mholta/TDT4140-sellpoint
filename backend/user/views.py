@@ -33,6 +33,8 @@ def user_view(request):
       # Checks if password matches
       if (request.data['password'] == user.password):
         # Send json responce with the user object
+        user.update_session()
+        print(user.session)
         serializer = UserSerializer(user, many = False)
         return JsonResponse(serializer.data, safe=False)
       else:
@@ -84,3 +86,26 @@ def user_list(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# Use cases
+# POST - log in with token and id
+@api_view(['POST'])
+def user_view_from_token(request):
+  
+  # Get user data
+  if request.method == 'POST':
+    # Checks is user with id exists in db
+    if (User.objects.all().filter(id=request.data['id']).count() > 0):
+      # Get user with matching id
+      user = User.objects.get(id=request.data['id'])
+
+      # Checks if token matches
+      if (request.data['token'] == user.session):
+        # Send json responce with the user object
+        serializer = UserSerializer(user, many = False)
+        return JsonResponse(serializer.data, safe=False)
+      else:
+        # If passowrd is wrong
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+    else:
+      # If user is not found with email
+      return Response(status=status.HTTP_404_NOT_FOUND)
