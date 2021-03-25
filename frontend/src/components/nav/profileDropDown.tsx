@@ -13,6 +13,7 @@ import { RootRoutes } from '../../pages/RootRoutes';
 import { logOut } from '../../redux/user/user.actions';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -80,6 +81,7 @@ const ProfileDropDown = () => {
             {userState.isLoggedIn && userState.userData.email
               ? userState.userData.firstName + ' ' + userState.userData.lastName
               : 'Profil'}
+            <MenuIcon />
           </Button>
           <Popper
             open={open}
@@ -98,7 +100,7 @@ const ProfileDropDown = () => {
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList
-                      //autoFocusItem={open}
+                      autoFocusItem={open}
                       id="menu-list-grow"
                       onKeyDown={handleListKeyDown}
                     >
