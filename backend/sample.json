@@ -25,7 +25,6 @@
       "longitude": 10.91169
     }
   },
-  { "model": "category.Category", "pk": 50, "fields": { "title": "Annet" } },
   { "model": "category.Category", "pk": 51, "fields": { "title": "Interiør" } },
   { "model": "category.Category", "pk": 52, "fields": { "title": "Hage" } },
   {
@@ -255,8 +254,7 @@
       "image": "https://img.fruugo.com/product/1/32/140121321_max.jpg",
       "price": 20,
       "ownerId": 50,
-      "created_at": "2020-12-25T10:00:00",
-      "categoryId": 50
+      "created_at": "2020-12-25T10:00:00"
     }
   }
 ]

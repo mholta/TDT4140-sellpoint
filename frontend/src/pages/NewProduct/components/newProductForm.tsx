@@ -36,7 +36,7 @@ const NewProductForm = () => {
       price: '',
       description: '',
       image: '',
-      categoryId: '',
+      categoryId: '1',
     },
     validationSchema: validationSchema,
     onSubmit: (data) => {
