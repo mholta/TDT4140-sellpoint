@@ -12,11 +12,11 @@ dotenv.config();
 const App = () => {
   return (
     <StoreProvider store={store}>
-      <Router>
-        <UserSessionWrapper>
+      <UserSessionWrapper>
+        <Router>
           <MainRouter />
-        </UserSessionWrapper>
-      </Router>
+        </Router>
+      </UserSessionWrapper>
     </StoreProvider>
   );
 };
