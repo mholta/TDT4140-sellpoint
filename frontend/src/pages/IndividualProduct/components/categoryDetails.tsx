@@ -1,3 +1,5 @@
+import { CircularProgress } from '@material-ui/core';
+import React from 'react';
 import { GetReqApiService } from '../../../components/api/getUser';
 import { LoadStates } from '../../../components/api/loadStates';
 
@@ -15,7 +17,7 @@ const CategoryDetails = ({ id }: CategoryProps) => {
 
   return (
     <div>
-      {service.status === LoadStates.LOADING && <div>Loading</div>}
+      {service.status === LoadStates.LOADING && <CircularProgress />}
       {service.status === LoadStates.LOADED && <p>{service.payload.title}</p>}
       {service.status === LoadStates.ERROR && <div>Error</div>}
     </div>

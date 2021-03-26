@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress } from '@material-ui/core';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GetReqApiService } from '../../../components/api/getUser';
@@ -23,7 +23,7 @@ const Categories = ({ setCategoryCallback }: CategoriesProps) => {
 
   return (
     <>
-      {service.status === LoadStates.LOADING && <div></div>}
+      {service.status === LoadStates.LOADING && <CircularProgress />}
       {service.status === LoadStates.LOADED && (
         <CategorySectionWrapper>
           <h2>Kategorier</h2>

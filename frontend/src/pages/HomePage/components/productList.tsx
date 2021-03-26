@@ -1,8 +1,11 @@
 import { LoadStates, Service } from '../../../components/api/loadStates';
 import ProductGrid from '../../../components/product/productGrid';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DistanceObject } from './productStateWrapper';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Backdrop from '@material-ui/core/Backdrop';
+import styled from 'styled-components';
 
 /**
  * Interface for defining required props when using the component.
@@ -51,7 +54,7 @@ const ProductList = ({
 
   return (
     <>
-      {service.status === LoadStates.LOADING && <div>Loading</div>}
+      {service.status === LoadStates.LOADING && <CircularProgress />}
       {service.status === LoadStates.LOADED && (
         <ProductGrid productList={service.payload} />
       )}

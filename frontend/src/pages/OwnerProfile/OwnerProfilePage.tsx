@@ -10,6 +10,7 @@ import { RootState } from '../../redux';
 import { LoadStates } from '../../components/api/loadStates';
 import UserProductList from '../UserProfile/components/productList';
 import { Container, Section } from '../../components/generics/layoutGenerics';
+import { CircularProgress } from '@material-ui/core';
 
 /**
  * Page wrapper component for User profile page.
@@ -32,7 +33,7 @@ const OwnerProfilePage = () => {
     <>
       <Navbar />
       <OwnerProfilePageWrapper>
-        {service.status === LoadStates.LOADING && <div>Loading</div>}
+        {service.status === LoadStates.LOADING && <CircularProgress />}
         {service.status === LoadStates.LOADED && (
           <>
             <ProfileSection {...service.payload} />{' '}
