@@ -4,6 +4,7 @@ import { GetReqApiService } from '../../../components/api/getUser';
 import { LoadStates } from '../../../components/api/loadStates';
 import RootRoutes from '../../RootRoutes';
 import UserLocation from '../../../components/user/userLocation';
+import { CircularProgress } from '@material-ui/core';
 
 /**
  * Page wrapper component for User profile page.
@@ -18,7 +19,7 @@ const OwnerDetails = ({ id }: OwnerProps) => {
 
   return (
     <div>
-      {service.status === LoadStates.LOADING && <div>Loading</div>}
+      {service.status === LoadStates.LOADING && <CircularProgress />}
       {service.status === LoadStates.LOADED && (
         <>
           <div>

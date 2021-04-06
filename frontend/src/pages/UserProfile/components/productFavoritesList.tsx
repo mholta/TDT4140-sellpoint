@@ -1,3 +1,5 @@
+import { CircularProgress } from '@material-ui/core';
+import React from 'react';
 import { GetProdByUserIdApiService } from '../../../components/api/getProductsByUser';
 import { LoadStates } from '../../../components/api/loadStates';
 import ProductGrid from '../../../components/product/productGrid';
@@ -15,7 +17,7 @@ const UserFavoritesList = ({ ownerId }: UserFavoritesListProps) => {
   );
   return (
     <>
-      {service.status === LoadStates.LOADING && <div>Loading</div>}
+      {service.status === LoadStates.LOADING && <CircularProgress />}
       {service.status === LoadStates.LOADED && (
         <ProductGrid productList={service.payload} />
       )}

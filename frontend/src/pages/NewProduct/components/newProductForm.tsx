@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { FormControl, InputLabel } from '@material-ui/core';
+import { CircularProgress, FormControl, InputLabel } from '@material-ui/core';
 import { DropzoneArea } from 'material-ui-dropzone';
 import { GetReqApiService } from '../../../components/api/getUser';
 import { LoadStates } from '../../../components/api/loadStates';
@@ -106,7 +106,7 @@ const NewProductForm = () => {
           error={formik.touched.title && Boolean(formik.errors.title)}
           helperText={formik.touched.title && formik.errors.title}
         />
-        {categoryService.status === LoadStates.LOADING && <div></div>}
+        {categoryService.status === LoadStates.LOADING && <CircularProgress />}
         {categoryService.status === LoadStates.LOADED && (
           <FormControl fullWidth>
             <InputLabel id="category">Kategori</InputLabel>
