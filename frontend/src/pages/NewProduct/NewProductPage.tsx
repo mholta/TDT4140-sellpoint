@@ -8,7 +8,7 @@ const NewProductPage = () => {
       <Navbar />
       <Section>
         <Container style={{ maxWidth: '20rem' }}>
-          <h1>Nytt produkt</h1>
+          <h1>Ny annonse</h1>
           <NewProductForm />
         </Container>
       </Section>
