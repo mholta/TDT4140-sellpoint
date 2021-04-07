@@ -153,7 +153,7 @@ const NewProductForm = () => {
           acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
         />
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Opprett produkt
+          Opprett annonse
         </Button>
       </form>{' '}
     </div>
